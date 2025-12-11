@@ -2,7 +2,7 @@ import CardImage from "../components/CardImage";
 
 export default function IntroPage() {
   return (
-    <div className="min-h-screen bg-[#455647] text-[#233235] px-12 pt-16 flex flex-col items-start">
+    <div className="bg-[#ffedf3] text-[#233235] px-12 flex items-center justify-center">
       <CardImage />
     </div>
   );
