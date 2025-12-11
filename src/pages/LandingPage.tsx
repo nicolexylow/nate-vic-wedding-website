@@ -76,14 +76,14 @@ export default function LandingPage() {
 
   return (
     <div className="w-full bg-[#535c4b]">
-      <div className="relative min-h-screen overflow-hidden">
+      <div className="relative min-h-svh overflow-hidden">
         <img
           src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
           alt="Nathanael and Victoria"
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="relative z-10 flex min-h-screen flex-col items-center justify-between px-6 py-15 text-white">
+        <div className="relative z-10 flex min-h-svh flex-col items-center justify-between px-6 py-15 text-white">
           <div className="w-full text-center space-y-3">
             <h2 className="text-md md:text-lg">The wedding of</h2>
             <h1 className="text-2xl leading-tight sm:text-5xl md:text-6xl">
