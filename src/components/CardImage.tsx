@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import landingHero from "../assets/landing-hero.jpg";
 
 export default function CardImage() {
   const imageRef = useRef<HTMLDivElement | null>(null);

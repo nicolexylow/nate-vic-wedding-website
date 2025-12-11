@@ -5,7 +5,6 @@ import {
   useRef,
   useState,
 } from "react";
-import landingHero from "../assets/landing-hero.jpg";
 import VideoPage from "./VideoPage";
 
 export default function LandingPage() {
