@@ -79,7 +79,7 @@ export default function LandingPage() {
     <div className="w-full bg-[#535c4b]">
       <div className="relative min-h-screen overflow-hidden">
         <img
-          src={landingHero}
+          src="https://live.staticflickr.com/65535/54977448565_5e6248ef6d_b.jpg"
           alt="Nathanael and Victoria"
           className="absolute inset-0 h-full w-full object-cover"
         />
