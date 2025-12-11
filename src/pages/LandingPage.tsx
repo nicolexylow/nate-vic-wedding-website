@@ -78,7 +78,7 @@ export default function LandingPage() {
     <div className="w-full bg-[#535c4b]">
       <div className="relative min-h-screen overflow-hidden">
         <img
-          src="https://live.staticflickr.com/65535/54977448565_5e6248ef6d_b.jpg"
+          src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
           alt="Nathanael and Victoria"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -101,7 +101,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <VideoPage invitationRef={invitationRef} />
+      <VideoPage invitationRef={invitationRef} shouldPlay={allowScroll} />
     </div>
   );
 }

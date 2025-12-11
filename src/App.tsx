@@ -1,7 +1,6 @@
 import './App.css'
 import IntroPage from './pages/IntroPage'
 import LandingPage from './pages/LandingPage'
-import VideoPage from './pages/VideoPage'
 
 function App() {
 
@@ -9,7 +8,7 @@ function App() {
     <div>
       <LandingPage />
       <IntroPage />
-      <VideoPage />
+      <IntroPage />
     </div>
   )
 }
