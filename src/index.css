@@ -28,7 +28,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100svh;
-  background-color: #ffedf3;
+  background-color: transparent;
 }
 
 h1 {
@@ -43,8 +43,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-
-
 
 @media (prefers-color-scheme: light) {
   :root {

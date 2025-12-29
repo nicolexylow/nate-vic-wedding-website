@@ -8,18 +8,19 @@ export default function SaveTheDatePage() {
     seconds: 0,
   });
 
-  // Wedding date: August 22, 2025
-  const weddingDate = new Date("2025-08-22T00:00:00").getTime();
-
   useEffect(() => {
     const calculateTimeLeft = () => {
+      // Wedding date: August 22, 2026 at midnight Bali time (UTC+8)
+      const weddingDate = new Date("2026-08-22T00:00:00+08:00").getTime();
       const now = new Date().getTime();
       const difference = weddingDate - now;
 
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          hours: Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((difference % (1000 * 60)) / 1000),
         });
@@ -71,13 +72,11 @@ export default function SaveTheDatePage() {
         </div>
 
         <div className="space-y-2">
-          <p className="text-xl md:text-2xl font-serif">Friday, August 22, 2025</p>
-          <p className="text-base md:text-lg text-[#535c4b]">
-            We can't wait to celebrate with you!
+          <p className="text-xl md:text-2xl font-serif">
+            Saturday, August 22, 2026
           </p>
         </div>
       </div>
     </div>
   );
 }
-

@@ -67,11 +67,21 @@ export default function CoupleInfoPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#faf8f3] text-[#233235] py-10 px-6">
-      <div className="max-w-5xl mx-auto text-center space-y-16 bg-[#fefcf8] rounded-3xl shadow-lg p-8 pt-20 md:p-12">
+    <div className="relative w-full text-[#233235] py-10 px-5">
+      {/* Fixed parallax background */}
+      <div
+        className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat -z-10"
+        style={{
+          backgroundImage:
+            "url('https://res.cloudinary.com/dvlbwxug3/image/upload/v1766581417/background_4_dozyxo.png')",
+        }}
+      />
+
+      <div className="max-w-5xl mx-auto text-center space-y-16 bg-white/90 border-8 border-white rounded-3xl shadow-lg p-8 pt-20 md:p-12 relative z-0"               style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
+      >
         <div
           ref={headingRef}
-          className={` space-y-4 text-3xl sm:text-4xl md:text-5xl font-serif transition-all duration-1000 ease-out ${
+          className={` space-y-4 text-3xl sm:text-4xl md:text-5xl font-serif transition-all duration-1500 ease-out ${
             headingActive
               ? "-translate-y-4 scale-100 opacity-100"
               : "scale-90 opacity-50"
@@ -88,7 +98,7 @@ export default function CoupleInfoPage() {
           <div className="space-y-6">
             <div
               ref={brideImageRef}
-              className={`relative w-64 h-80 mx-auto rounded-t-full rounded-b-full overflow-hidden shadow-xl transition-all duration-1000 ease-out ${
+              className={`relative w-64 h-80 mx-auto rounded-t-full rounded-b-full overflow-hidden shadow-xl transition-all duration-1500 ease-out ${
                 brideImageActive
                   ? "-translate-y-4 scale-100 opacity-100"
                   : "scale-95 opacity-80"
@@ -102,7 +112,7 @@ export default function CoupleInfoPage() {
             </div>
             <div
               ref={brideTextRef}
-              className={`space-y-2 transition-all duration-1000 ease-out ${
+              className={`space-y-2 transition-all duration-1500 ease-out ${
                 brideTextActive
                   ? "-translate-y-4 scale-100 opacity-100"
                   : "-translate-y-12 scale-90 opacity-50"
@@ -129,7 +139,7 @@ export default function CoupleInfoPage() {
           <div className="space-y-6">
             <div
               ref={groomImageRef}
-              className={`relative w-64 h-80 mx-auto rounded-t-full rounded-b-full overflow-hidden shadow-xl transition-all duration-1000 ease-out ${
+              className={`relative w-64 h-80 mx-auto rounded-t-full rounded-b-full overflow-hidden shadow-xl transition-all duration-1500 ease-out ${
                 groomImageActive
                   ? "-translate-y-4 scale-100 opacity-100"
                   : "scale-95 opacity-80"
@@ -143,7 +153,7 @@ export default function CoupleInfoPage() {
             </div>
             <div
               ref={groomTextRef}
-              className={`space-y-2 transition-all duration-1000 ease-out ${
+              className={`space-y-2 transition-all duration-1500 ease-out ${
                 groomTextActive
                   ? "-translate-y-4 scale-100 opacity-100"
                   : "-translate-y-12 scale-90 opacity-50"

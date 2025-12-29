@@ -92,27 +92,6 @@ export default function WishesPage() {
             </button>
           </form>
         </div>
-
-        {/* Wishes Display */}
-        <div className="space-y-6">
-          <h3 className="text-2xl font-serif font-bold text-center">Messages from Our Loved Ones</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {wishes.map((wish) => (
-              <div
-                key={wish.id}
-                className="bg-white/70 rounded-lg p-6 shadow-lg space-y-3"
-              >
-                <div className="flex justify-between items-start">
-                  <h4 className="font-semibold text-lg">{wish.name}</h4>
-                  <span className="text-xs text-[#535c4b]">{wish.date}</span>
-                </div>
-                <p className="text-sm md:text-base text-[#233235]/80">
-                  {wish.message}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
