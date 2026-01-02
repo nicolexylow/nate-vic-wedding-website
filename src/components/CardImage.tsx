@@ -1,34 +1,45 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  useScrollContainer,
+  useIsMobile,
+  getScrollElement,
+  getViewportHeight,
+} from "../contexts/ScrollContext";
 
 export default function CardImage() {
   const imageRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [imageActive, setImageActive] = useState(false);
   const [cardActive, setCardActive] = useState(false);
+  const scrollContainer = useScrollContainer();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const imgEl = imageRef.current;
     const cardEl = cardRef.current;
     if (!imgEl || !cardEl) return;
 
+    const scrollElement = getScrollElement(scrollContainer, isMobile);
+
     const handleScroll = () => {
       const imgRect = imgEl.getBoundingClientRect();
       const cardRect = cardEl.getBoundingClientRect();
+      const viewportHeight = getViewportHeight(scrollContainer, isMobile);
 
       // Image animates a bit earlier (80% viewport)
       const imageTrigger =
-        imgRect.top + imgRect.height * 0.5 <= window.innerHeight * 0.8;
+        imgRect.top + imgRect.height * 0.5 <= viewportHeight * 0.8;
       // Card animates later (90% viewport)
-      const cardTrigger = cardRect.top <= window.innerHeight * 0.8;
+      const cardTrigger = cardRect.top <= viewportHeight * 0.8;
 
       setImageActive(imageTrigger);
       setCardActive(cardTrigger);
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    scrollElement.addEventListener("scroll", handleScroll, { passive: true });
+    return () => scrollElement.removeEventListener("scroll", handleScroll);
+  }, [scrollContainer, isMobile]);
 
   return (
     <div className="mt-14 -mb-5">

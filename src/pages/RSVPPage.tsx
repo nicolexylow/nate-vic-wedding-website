@@ -1,106 +1,77 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  useScrollContainer,
+  useIsMobile,
+  getScrollElement,
+  getViewportHeight,
+} from "../contexts/ScrollContext";
 
 export default function RSVPPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    message: "",
-    attendance: "",
-  });
+  const rsvpRef = useRef<HTMLDivElement | null>(null);
+  const [rsvpActive, setRspvActive] = useState(false);
+  const scrollContainer = useScrollContainer();
+  const isMobile = useIsMobile();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the data to a backend
-    const whatsappMessage = `Hi! I'm ${formData.name}. ${formData.attendance ? `I ${formData.attendance.toLowerCase()}.` : ""} ${formData.message ? `Message: ${formData.message}` : ""}`;
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, "_blank");
-  };
+  useEffect(() => {
+    const rsvpEl = rsvpRef.current;
+    if (!rsvpEl) return;
+
+    const scrollElement = getScrollElement(scrollContainer, isMobile);
+
+    const handleScroll = () => {
+      const rsvpRect = rsvpEl.getBoundingClientRect();
+      const viewportHeight = getViewportHeight(scrollContainer, isMobile);
+
+      // Cards animate when they reach 80% of viewport
+      const rsvpTrigger = rsvpRect.top <= viewportHeight * 0.6;
+
+      setRspvActive(rsvpTrigger);
+    };
+
+    handleScroll();
+    scrollElement.addEventListener("scroll", handleScroll, { passive: true });
+    return () => scrollElement.removeEventListener("scroll", handleScroll);
+  }, [scrollContainer, isMobile]);
 
   return (
-    <div className="w-full bg-white text-[#233235] py-20 px-6">
-      <div className="max-w-2xl mx-auto space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif">RSVP</h2>
-          <p className="text-base md:text-lg text-[#535c4b]">
-            Please let us know if you'll be joining us on our special day
-          </p>
-        </div>
+    <div className="w-full bg-[#ffedf3] text-[#233235] pb-6 px-6">
+      <div className="max-w-5xl mx-auto space-y-16 font-serif">
+        <div className={`grid gap-8 rounded-2xl p-4 pt-20 relative overflow-hidden transition-all duration-1500 ease-out ${
+              rsvpActive
+                ? "-translate-y-15 scale-100 opacity-100"
+                : "-translate-y-12 scale-90 opacity-50"
+            }`} ref={rsvpRef}>
+          {/* Ceremony */}
+          <div
+    
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out `}
+            style={{
+              backgroundImage: `url(https://res.cloudinary.com/dvlbwxug3/image/upload/v1766581417/background_4_dozyxo.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "top",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div
+              className="bg-white/90 rounded-2xl border-white border-5 p-8 shadow-lg text-center space-y-6"
+              style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
+            >
+              <div className="space-y-2">
+                <h3 className="text-2xl font-serif font-bold">
+                  RSVP
+                </h3>
+                <div className="w-20 h-0.5 bg-[#535c4b] mx-auto"></div>
+              </div>
 
-        <form onSubmit={handleSubmit} className="bg-[#ffedf3]/50 rounded-lg p-8 shadow-lg space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Name *
-            </label>
-            <input
-              type="text"
-              id="name"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-2 rounded-lg border border-[#535c4b]/30 focus:outline-none focus:ring-2 focus:ring-[#535c4b]"
-              placeholder="Your full name"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              rows={4}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-2 rounded-lg border border-[#535c4b]/30 focus:outline-none focus:ring-2 focus:ring-[#535c4b]"
-              placeholder="Your message or wishes for us"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-3">Attendance *</label>
-            <div className="space-y-2">
-              <label className="flex items-center space-x-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="attendance"
-                  value="Yes, I will attend"
-                  checked={formData.attendance === "Yes, I will attend"}
-                  onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
-                  className="w-4 h-4 text-[#535c4b] focus:ring-[#535c4b]"
-                />
-                <span>Yes, I will attend</span>
-              </label>
-              <label className="flex items-center space-x-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="attendance"
-                  value="Maybe"
-                  checked={formData.attendance === "Maybe"}
-                  onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
-                  className="w-4 h-4 text-[#535c4b] focus:ring-[#535c4b]"
-                />
-                <span>I'm still unsure</span>
-              </label>
-              <label className="flex items-center space-x-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="attendance"
-                  value="Sorry, I cannot attend"
-                  checked={formData.attendance === "Sorry, I cannot attend"}
-                  onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
-                  className="w-4 h-4 text-[#535c4b] focus:ring-[#535c4b]"
-                />
-                <span>Sorry, I cannot attend</span>
-              </label>
+              <div className="space-y-3">
+                <p className="italic text-[#797979]">Please let us know if you will be attending</p>
+                <button className="rounded-full py-3 px-8 bg-[#ffe4e6]">
+                  Click here to confirm
+                </button>
+                </div>
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="w-full px-6 py-3 bg-[#535c4b] text-white rounded-full hover:bg-[#233235] transition-colors font-medium"
-          >
-            Confirm via WhatsApp
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

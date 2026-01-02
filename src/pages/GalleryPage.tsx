@@ -11,18 +11,18 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   return (
-    <div className="w-full bg-[#ffedf3] text-[#233235] py-20 px-6">
+    <div className="w-full bg-[#ffedf3]/90 text-[#233235] py-20 px-6">
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif">
+          <h2 className="text-3xl font-serif">
             Our Gallery
           </h2>
-          <p className="text-base md:text-lg text-[#535c4b]">
+          <p className="text-md text-[#535c4b]">
             Memories we've shared together
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {images.map((image) => (
             <div
               key={image.id}
@@ -63,4 +63,3 @@ export default function GalleryPage() {
     </div>
   );
 }
-
