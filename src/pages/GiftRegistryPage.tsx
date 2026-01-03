@@ -27,12 +27,6 @@ export default function GiftRegistryPage() {
                 <p className="text-xl font-bold text-[#535c4b]">1234567890</p>
                 <p className="text-md text-[#535c4b] mt-1">Account Name: Nathanael & Victoria</p>
               </div>
-              <button
-                onClick={() => copyToClipboard("1234567890", "Account number")}
-                className="px-6 py-2 bg-[#ffe4e6] rounded-full hover:bg-[#233235] transition-colors text-sm"
-              >
-                Copy Account Number
-              </button>
             </div>
           </div>
 
@@ -50,12 +44,6 @@ export default function GiftRegistryPage() {
                   United States
                 </p>
               </div>
-              <button
-                onClick={() => copyToClipboard("123 Gift Street\nCity, State 12345\nUnited States", "Address")}
-                className="px-6 py-2 bg-[#ffe4e6] rounded-full hover:bg-[#233235] transition-colors text-sm"
-              >
-                Copy Address
-              </button>
             </div>
           </div>
         </div>

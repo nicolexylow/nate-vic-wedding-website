@@ -134,7 +134,7 @@ export default function DressCodePage() {
         </div>
 
         {/* Ladies Section */}
-        <div className="space-y-8">
+        <div className="space-y-10">
           <div
             className={`text-center space-y-3 transition-all duration-1500 ease-out mt-10 ${
               ladiesActive
@@ -167,7 +167,7 @@ export default function DressCodePage() {
         </div>
 
         {/* Gents Section */}
-        <div className="space-y-8">
+        <div className="space-y-10">
           <div
             className={`text-center space-y-3 transition-all duration-1500 ease-out mt-10 ${
               gentsActive

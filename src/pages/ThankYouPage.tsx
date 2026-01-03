@@ -26,7 +26,7 @@ export default function ThankYouPage() {
 
         <div className="space-y-4 pt-8  border-t border-[#535c4b]/20">
           <p className="text-lg font-serif">With Love,</p>
-          <div className="text-3xl font-serif font-bold text-[#535c4b]">
+          <div className="text-xl font-serif font-semibold text-[#535c4b]">
             Nathanael & Victoria
           </div>
         </div>
