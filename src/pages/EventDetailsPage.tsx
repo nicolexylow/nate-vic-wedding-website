@@ -66,7 +66,7 @@ export default function EventDetailsPage() {
                 <h3 className="text-2xl font-serif font-bold">
                   Ceremony
                 </h3>
-                <div className="w-20 h-0.5 bg-[#535c4b] mx-auto"></div>
+                <div className="w-20 h-0.5 mx-auto"></div>
               </div>
 
               <div className="space-y-3">
@@ -117,7 +117,7 @@ export default function EventDetailsPage() {
                 <h3 className="text-2xl font-serif font-bold">
                   Reception
                 </h3>
-                <div className="w-20 h-0.5 bg-[#535c4b] mx-auto"></div>
+                <div className="w-20 h-0.5 mx-auto"></div>
               </div>
               <div className="space-y-3">
                 <div className="space-y-1">

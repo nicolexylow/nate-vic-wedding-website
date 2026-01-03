@@ -147,7 +147,7 @@ export default function LandingPage() {
   }, [allowScroll, scrollContainer, isMobile]);
 
   return (
-    <div className="w-full bg-[#535c4b]">
+    <div className="w-full">
       <div className="relative min-h-svh overflow-hidden font-serif">
         <img
           src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
