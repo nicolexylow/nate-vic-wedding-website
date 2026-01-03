@@ -1,8 +1,4 @@
 export default function GiftRegistryPage() {
-  const copyToClipboard = (text: string, type: string) => {
-    navigator.clipboard.writeText(text);
-    alert(`${type} copied to clipboard!`);
-  };
 
   return (
     <div className="w-full text-[#233235] py-15 px-6">
