@@ -1,4 +1,5 @@
-import { createContext, useContext, RefObject, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import type { RefObject } from "react";
 
 
 export type ScrollContextType = {
@@ -7,13 +8,17 @@ export type ScrollContextType = {
   setAllowScroll: (v: boolean) => void;
 } | null;
 
-export const ScrollContext = createContext<ScrollContextType>({
-  scrollContainer: null,
-});
+export const ScrollContext = createContext<ScrollContextType>(null);
+
 
 export const useScrollContainer = () => {
-  const { scrollContainer } = useContext(ScrollContext);
-  return scrollContainer;
+  const context = useContext(ScrollContext);
+
+  if (!context) {
+    throw new Error("useScrollContainer must be used within ScrollContext.Provider");
+  }
+
+  return context.scrollContainer;
 };
 
 // Hook to track if we're on mobile (reactive to window resize)
@@ -33,12 +38,6 @@ export const useIsMobile = (): boolean => {
   }, []);
 
   return isMobile;
-};
-
-// Helper to check if we're on mobile (below sm breakpoint)
-const isMobile = (): boolean => {
-  if (typeof window === "undefined") return false;
-  return window.innerWidth < 640; // Tailwind's sm breakpoint
 };
 
 // Helper to get the scroll element (container or window)
