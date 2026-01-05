@@ -155,11 +155,14 @@ export default function LandingPage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
 
+           {/* Dark overlay */}
+           <div className="absolute inset-0 bg-black/20" />
+
         <div className="relative z-10 flex min-h-svh flex-col items-center justify-between px-6 py-15 text-white">
           <div className="w-full text-center space-y-3">
             <h2 className="text-md text-shadow-lg">The wedding of</h2>
             <h1 className="text-2xl italic text-shadow-lg">Nathanael & Victoria</h1>
-            <h3 className="text-md text-shadow-lg">22 Aug 2025</h3>
+            
           </div>
 
           <button

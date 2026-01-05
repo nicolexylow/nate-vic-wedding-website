@@ -78,7 +78,7 @@ export default function CoupleInfoPage() {
   return (
     <div className="relative w-full text-[#233235] py-10 px-5 font-serif">
       <div
-        className="max-w-5xl mx-auto text-center space-y-16 bg-white/90 border-8 border-white rounded-3xl shadow-lg p-6 pb-10 pt-20 relative z-0"
+        className="max-w-5xl mx-auto text-center space-y-16 bg-white/90 border-6 border-white rounded-3xl shadow-lg p-6 pb-10 pt-20 relative z-0"
         style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
       >
         <div

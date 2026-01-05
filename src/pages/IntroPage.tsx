@@ -61,7 +61,7 @@ export default function IntroPage() {
           }`}
         >
           <img
-            src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+            src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/couple-intro.jpg"
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-center block"
           />
@@ -69,7 +69,7 @@ export default function IntroPage() {
         <div
           ref={cardRef}
           style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
-          className={`bg-white/90 p-5 rounded-2xl pt-18 border-8 border-white space-y-5 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.1)] relative ${
+          className={`bg-white/90 p-5 rounded-2xl pt-18 border-6 border-white space-y-5 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.1)] relative ${
             cardActive
               ? "-translate-y-15 opacity-100"
               : "-translate-y-5 opacity-50"

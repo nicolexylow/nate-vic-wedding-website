@@ -28,7 +28,7 @@ export default function VideoPage({ invitationRef, shouldPlay }: VideoPageProps)
         muted
         playsInline
       >
-        <source src="https://res.cloudinary.com/dvlbwxug3/video/upload/v1766489435/nate-vic-video_mqrfq9.mov" type="video/mp4" />
+        <source src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/nate-vic-video.mov" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>

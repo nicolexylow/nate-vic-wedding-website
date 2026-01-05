@@ -34,7 +34,7 @@ export default function RSVPPage() {
   }, [scrollContainer, isMobile]);
 
   return (
-    <div className="w-full bg-[#ffedf3] text-[#233235] pb-6 px-6">
+    <div className="w-full bg-[#ffedf3] text-[#233235] py-4 pt-15 px-6">
       <div className="max-w-5xl mx-auto space-y-16 font-serif">
         <div
           className={`grid gap-8 rounded-2xl p-4 pt-20 relative overflow-hidden transition-all duration-1500 ease-out ${

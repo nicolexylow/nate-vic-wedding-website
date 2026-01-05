@@ -2,7 +2,7 @@ export default function GiftRegistryPage() {
 
   return (
     <div className="w-full text-[#233235] py-15 px-6">
-      <div className="max-w-4xl mx-auto space-y-10 bg-white/90 border-5 border-white px-5 py-10 rounded-2xl" style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
+      <div className="max-w-4xl mx-auto space-y-10 bg-white/90 border-6 border-white px-5 py-10 rounded-2xl" style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
       >
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-serif">

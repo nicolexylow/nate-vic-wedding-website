@@ -11,6 +11,7 @@ import GalleryPage from "./pages/GalleryPage";
 import GiftRegistryPage from "./pages/GiftRegistryPage";
 import RSVPPage from "./pages/RSVPPage";
 import ThankYouPage from "./pages/ThankYouPage";
+import FAQPage from "./pages/FAQPage";
 
 function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -33,31 +34,40 @@ function App() {
     >
       <div className="sm:flex sm:h-screen sm:overflow-hidden">
         {/* Static Image on Left - Only visible on sm and above */}
-        <div className="hidden relative sm:block sm:flex-1 sm:h-screen sm:shrink-0">
-          <div className="absolute text-2xl font-serif text-white inset-0 flex items-center justify-center flex-col gap-3">
-            <p className="text-shadow-lg text-xl">The Wedding of</p>
-            <h1 className="text-2xl italic text-shadow-lg">Nathanael & Victoria</h1>
-          </div>
+        <div className="hidden relative md:block md:flex-1 md:h-screen md:shrink-0">
+          {/* Background image */}
           <img
-            src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+            src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/DSC09046.jpg"
             alt="Nathanael and Victoria"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
+
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/20" />
+
+          {/* Text overlay */}
+          <div className="absolute inset-0 z-10 flex items-center justify-center flex-col gap-3 text-white px-3">
+            <p className="text-shadow-lg text-xl">The Wedding of</p>
+            <h1 className="text-4xl italic text-shadow-lg">
+              Nathanael & Victoria
+            </h1>
+            <h2 className="text-lg text-shadow-lg">22 Aug 2025</h2>
+          </div>
         </div>
 
         {/* Content Area - Full width on mobile, fixed width on right for sm+ */}
         <div
           ref={scrollContainerRef}
-          className="relative w-full sm:w-[425px] sm:shrink-0 sm:h-dvh sm:overflow-y-auto"
+          className="relative w-full sm:w-[450px] sm:shrink-0 sm:h-dvh sm:overflow-y-auto"
         >
           {/* FIXED BACKGROUND (mobile = full screen, desktop = right column only) */}
           <div
             className="
               pointer-events-none
               fixed inset-0
-              sm:left-auto sm:right-0 sm:top-0 sm:bottom-0 sm:w-[425px]
+              sm:left-auto sm:right-0 sm:top-0 sm:bottom-0 sm:w-[450px]
               z-0
-              bg-[url('https://res.cloudinary.com/dvlbwxug3/image/upload/v1766581417/background_4_dozyxo.png')]
+              bg-[url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')]
               bg-no-repeat bg-top bg-cover
             "
           />
@@ -70,6 +80,7 @@ function App() {
             <SaveTheDatePage />
             <EventDetailsPage />
             <DressCodePage />
+            <FAQPage />
             <GalleryPage />
             <RSVPPage />
             <GiftRegistryPage />

@@ -11,8 +11,9 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   return (
-    <div className="w-full bg-[#ffedf3]/90 text-[#233235] py-20 px-6">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <div className="w-full text-[#233235] py-12 px-4">
+      <div className="max-w-6xl mx-auto space-y-12 bg-white/90 border-6 border-white px-5 py-10 rounded-2xl" style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
+      >
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-serif">
             Our Gallery

@@ -96,9 +96,9 @@ export default function DressCodePage() {
   }, [scrollContainer, isMobile]);
 
   return (
-    <div className="w-full text-[#233235] py-20 px-6">
+    <div className="w-full text-[#233235] py-15 px-6">
       <div
-        className="max-w-6xl mx-auto space-y-16 bg-white/90 border-5 border-white px-5 py-8 rounded-2xl"
+        className="max-w-6xl mx-auto space-y-16 bg-white/90 border-6 border-white px-5 py-8 rounded-2xl"
         style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
       >
         {/* Title */}

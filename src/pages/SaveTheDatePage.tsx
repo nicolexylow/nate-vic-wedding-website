@@ -95,7 +95,7 @@ export default function SaveTheDatePage() {
               ? "-translate-y-8 opacity-100"
               : "opacity-50"
           }`} ref={dateRef}>
-          <div className="grid grid-cols-4 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div className="grid grid-cols-4 gap-4 max-w-3xl mx-auto">
             <div className="bg-white/70 rounded-lg py-2 shadow-lg">
               <div className="text-lg font-bold text-[#535c4b] mb-2">
                 {String(timeLeft.days).padStart(2, "0")}
