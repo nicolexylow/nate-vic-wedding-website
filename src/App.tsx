@@ -12,10 +12,21 @@ import GiftRegistryPage from "./pages/GiftRegistryPage";
 import RSVPPage from "./pages/RSVPPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import FAQPage from "./pages/FAQPage";
+import { Pause, Play } from "lucide-react";
 
 function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [allowScroll, setAllowScroll] = useState(false);
+
+  const SLIDES = [
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/DSC09046.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/couple-intro.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg",
+  ];
+  
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
 
   useEffect(() => {
     const el = scrollContainerRef.current;
@@ -23,6 +34,20 @@ function App() {
 
     el.style.overflowY = allowScroll ? "auto" : "hidden";
   }, [allowScroll]);
+
+
+
+
+  useEffect(() => {
+    if (paused || SLIDES.length <= 1) return;
+  
+    const id = window.setInterval(() => {
+      setSlideIndex((i) => (i + 1) % SLIDES.length);
+    }, 5000);
+  
+    return () => window.clearInterval(id);
+  }, [paused]);
+
 
   return (
     <ScrollContext.Provider
@@ -33,14 +58,20 @@ function App() {
       }}
     >
       <div className="sm:flex sm:h-screen sm:overflow-hidden">
-        {/* Static Image on Left - Only visible on sm and above */}
-        <div className="hidden relative md:block md:flex-1 md:h-screen md:shrink-0">
-          {/* Background image */}
-          <img
-            src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/DSC09046.jpg"
-            alt="Nathanael and Victoria"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        {/* Static Image on Left - Only visible on md and above */}
+<div className="hidden relative md:block md:flex-1 md:h-screen md:shrink-0 overflow-hidden">
+  {/* Slideshow images (crossfade) */}
+  {SLIDES.map((src, i) => (
+    <img
+      key={src}
+      src={src}
+      alt="Nathanael and Victoria"
+      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+        i === slideIndex ? "opacity-100" : "opacity-0"
+      }`}
+      draggable={false}
+    />
+  ))}
 
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/20" />
@@ -51,9 +82,23 @@ function App() {
             <h1 className="text-4xl italic text-shadow-lg">
               Nathanael & Victoria
             </h1>
-            <h2 className="text-lg text-shadow-lg">22 Aug 2025</h2>
+            <h2 className="text-lg text-shadow-lg">22 Aug 2026</h2>
           </div>
         </div>
+
+        {/* STOP / PLAY BUTTON */}
+  <button
+    onClick={() => setPaused((p) => !p)}
+    className="
+      absolute bottom-5 left-5 z-20
+      rounded-full px-5 py-3
+      bg-black/30 backdrop-blur-md
+      text-white hover:bg-black/40
+      transition
+    "
+  >
+    {paused ? <div className="flex gap-2 items-center"><Play size={16} /><p>Play slideshow</p></div> : <div className="flex gap-2 items-center"><Pause size={16} /><p>Pause slideshow</p></div>}
+  </button>
 
         {/* Content Area - Full width on mobile, fixed width on right for sm+ */}
         <div

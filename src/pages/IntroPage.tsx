@@ -43,10 +43,10 @@ export default function IntroPage() {
 
   return (
     <div
-      className="text-[#233235] px-5 flex items-center justify-center"
+      className="text-[#2a2a2a] px-5 flex items-center justify-center"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/dvlbwxug3/image/upload/v1766491699/background_3_cuqtmj.png')",
+          "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(3).png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -75,16 +75,20 @@ export default function IntroPage() {
               : "-translate-y-5 opacity-50"
           }`}
         >
-          <h1 className="text-xl">Text here</h1>
           <p className="text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            We can’t wait to celebrate our wedding with you in beautiful Bali.
+            Having our closest friends and family travel from near and far to
+            share this special moment means more to us than words can say. As
+            many of you know, travel has always been close to our hearts, so it
+            only feels fitting that we come together in one unforgettable place
+            to celebrate our love. This weekend is all about love, laughter, and
+            creating memories together and we’re so grateful you’ll be part of
+            it.
           </p>
+          <div className="space-y-1 text-md font-semibold">
+            <h1>Love,</h1>
+            <h2 className="italic">Nathanael & Victoria</h2>
+          </div>
         </div>
       </div>
     </div>

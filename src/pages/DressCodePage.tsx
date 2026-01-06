@@ -47,45 +47,37 @@ export default function DressCodePage() {
 
       if (headingEl) {
         const headingRect = headingEl.getBoundingClientRect();
-        const headingTrigger =
-          headingRect.top <= viewportHeight * 0.9;
+        const headingTrigger = headingRect.top <= viewportHeight * 0.9;
         setHeadingActive(headingTrigger);
       }
 
       if (paletteEl) {
         const paletteRect = paletteEl.getBoundingClientRect();
-        const paletteTrigger =
-          paletteRect.top <= viewportHeight * 0.9;
+        const paletteTrigger = paletteRect.top <= viewportHeight * 0.9;
         setPaletteActive(paletteTrigger);
       }
 
       if (ladiesEl) {
         const ladiesRect = ladiesEl.getBoundingClientRect();
-        const ladiesTrigger =
-          ladiesRect.top <= viewportHeight * 0.7;
+        const ladiesTrigger = ladiesRect.top <= viewportHeight * 0.7;
         setLadiesActive(ladiesTrigger);
       }
 
       if (ladiesTextEl) {
         const ladiesTextRect = ladiesTextEl.getBoundingClientRect();
-        const ladiesTextTrigger =
-          ladiesTextRect.top <=
-          viewportHeight * 0.9;
+        const ladiesTextTrigger = ladiesTextRect.top <= viewportHeight * 0.9;
         setLadiesTextActive(ladiesTextTrigger);
       }
 
       if (gentsEl) {
         const gentsRect = gentsEl.getBoundingClientRect();
-        const gentsTrigger =
-          gentsRect.top <= viewportHeight * 0.7;
+        const gentsTrigger = gentsRect.top <= viewportHeight * 0.7;
         setGentsActive(gentsTrigger);
       }
 
       if (gentsTextEl) {
         const gentsTextRect = gentsTextEl.getBoundingClientRect();
-        const gentsTextTrigger =
-          gentsTextRect.top <=
-          viewportHeight * 0.9;
+        const gentsTextTrigger = gentsTextRect.top <= viewportHeight * 0.9;
         setGentsTextActive(gentsTextTrigger);
       }
     };
@@ -96,14 +88,14 @@ export default function DressCodePage() {
   }, [scrollContainer, isMobile]);
 
   return (
-    <div className="w-full text-[#233235] py-15 px-6">
+    <div className="w-full text-[#2a2a2a] py-15 px-6">
       <div
         className="max-w-6xl mx-auto space-y-16 bg-white/90 border-6 border-white px-5 py-8 rounded-2xl"
         style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
       >
         {/* Title */}
         <div
-          className={`text-center transition-all duration-1000 ease-out pt-10 ${
+          className={`text-center transition-all duration-1000 ease-out pt-10 space-y-10 ${
             headingActive
               ? "-translate-y-4 scale-100 opacity-100"
               : "scale-90 opacity-50"
@@ -111,7 +103,16 @@ export default function DressCodePage() {
           ref={headingRef}
         >
           <h2 className="text-3xl font-serif ">Dress Code</h2>
+
+          <div className="space-y-3">
+          <p>Step into our enchanted forest in style. We invite you to embrace formal attire with a touch of whimsy. Think flowing fabrics, soft florals, earthy tones, and a hint of sparkle. </p>
+          <p>Please note that parts of the celebration will be outdoors, so choose comfortable footwear.
+
+          </p>
         </div>
+        </div>
+
+        
 
         {/* Color Palette */}
         <div
@@ -143,26 +144,28 @@ export default function DressCodePage() {
             }`}
             ref={ladiesRef}
           >
-            <h3 className="text-xl font-serif text-center">Ladies</h3>
+            <h3 className="text-xl font-serif font-semibold text-center">Ladies</h3>
+
+            <p>
+            We adore dreamy gowns and evening gowns in pastel hues.
+
+            </p>
 
             <img
-              src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+              src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
               className=" aspect-square h-full w-full object-cover object-center rounded-2xl"
             />
           </div>
 
-          <div className={`text-center space-y-3 transition-all duration-1500 ease-out ${
+          <div
+            className={`text-center space-y-3 transition-all duration-1500 ease-out ${
               ladiesTextActive
                 ? "-translate-y-8 scale-100 opacity-100"
                 : "opacity-50"
             }`}
-            ref={ladiesTextRef}>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta
-              cupiditate, ratione odio laborum rem animi expedita cum,
-              necessitatibus recusandae quas vel sed quod quidem distinctio
-              reiciendis quos nam sunt commodi?
-            </p>
+            ref={ladiesTextRef}
+          >
+            
           </div>
         </div>
 
@@ -176,26 +179,26 @@ export default function DressCodePage() {
             }`}
             ref={gentsRef}
           >
-            <h3 className="text-xl font-serif text-center">Gents</h3>
+            <h3 className="text-xl font-serif font-semibold text-center">Gentlemen</h3>
+            <p>
+            Lightweight suits or dress shirts with tailored trousers are perfect for Bali’s tropical warmth. 
+            </p>
 
             <img
-              src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+              src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
               className=" aspect-square h-full w-full object-cover object-center rounded-2xl"
             />
           </div>
 
-          <div className={`text-center space-y-3 transition-all duration-1500 ease-out ${
+          <div
+            className={`text-center space-y-3 transition-all duration-1500 ease-out ${
               gentsTextActive
                 ? "-translate-y-8 scale-100 opacity-100"
                 : "opacity-50"
             }`}
-            ref={gentsTextRef}>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta
-              cupiditate, ratione odio laborum rem animi expedita cum,
-              necessitatibus recusandae quas vel sed quod quidem distinctio
-              reiciendis quos nam sunt commodi?
-            </p>
+            ref={gentsTextRef}
+          >
+            
           </div>
         </div>
       </div>

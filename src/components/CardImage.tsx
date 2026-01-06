@@ -52,7 +52,7 @@ export default function CardImage() {
         }`}
       >
         <img
-          src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+          src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center block"
         />

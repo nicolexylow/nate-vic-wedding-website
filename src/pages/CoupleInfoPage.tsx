@@ -76,7 +76,7 @@ export default function CoupleInfoPage() {
   }, [scrollContainer, isMobile]);
 
   return (
-    <div className="relative w-full text-[#233235] py-10 px-5 font-serif">
+    <div className="relative w-full text-[#2a2a2a] py-10 px-5 font-serif">
       <div
         className="max-w-5xl mx-auto text-center space-y-16 bg-white/90 border-6 border-white rounded-3xl shadow-lg p-6 pb-10 pt-20 relative z-0"
         style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
@@ -90,7 +90,7 @@ export default function CoupleInfoPage() {
           }`}
         >
           <h2 className="text-3xl">We Are Getting Married!</h2>
-          <p className="text-base text-[#797979] max-w-2xl mx-auto italic">
+          <p className="text-base text-[#696969] max-w-2xl mx-auto italic">
             "Two souls, one heart. Two lives, one path. Two people, one love."
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function CoupleInfoPage() {
               }`}
             >
               <img
-                src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+                src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
                 alt="Victoria"
                 className="w-full h-full object-cover"
               />
@@ -143,7 +143,7 @@ export default function CoupleInfoPage() {
               }`}
             >
               <img
-                src="https://res.cloudinary.com/dvlbwxug3/image/upload/v1765443914/landing-hero_hv0ehr.jpg"
+                src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
                 alt="Nathanael"
                 className="w-full h-full object-cover"
               />

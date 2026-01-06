@@ -77,7 +77,7 @@ export default function SaveTheDatePage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#ffedf3] text-[#233235] py-20 px-7 font-serif">
+    <div className="w-full bg-[#ffedf3] text-[#2a2a2a] py-20 px-7 font-serif">
       <div className="max-w-4xl mx-auto text-center space-y-18">
         <div
           className={`transition-all duration-1500 ease-out ${
@@ -90,40 +90,41 @@ export default function SaveTheDatePage() {
           <h2 className="text-3xl">Save The Date</h2>
         </div>
 
-        <div className={`space-y-6 transition-all duration-1000 ease-out ${
-            dateActive
-              ? "-translate-y-8 opacity-100"
-              : "opacity-50"
-          }`} ref={dateRef}>
-          <div className="grid grid-cols-4 gap-4 max-w-3xl mx-auto">
-            <div className="bg-white/70 rounded-lg py-2 shadow-lg">
-              <div className="text-lg font-bold text-[#535c4b] mb-2">
+        <div
+          className={`space-y-6 transition-all duration-1000 ease-out ${
+            dateActive ? "-translate-y-8 opacity-100" : "opacity-50"
+          }`}
+          ref={dateRef}
+        >
+          <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto">
+            <div className="bg-white/70 rounded-lg py-3 border-3 border-white shadow-lg">
+              <div className="text-xl font-bold text-[#535c4b] mb-2">
                 {String(timeLeft.days).padStart(2, "0")}
               </div>
-              <div className="text-xs font-medium">Days</div>
+              <div className="text-sm font-medium">Days</div>
             </div>
-            <div className="bg-white/70 rounded-lg py-2 shadow-lg">
-              <div className="text-lg font-bold text-[#535c4b] mb-2">
+            <div className="bg-white/70 rounded-lg py-3 border-3 border-white shadow-lg">
+              <div className="text-xl font-bold text-[#535c4b] mb-2">
                 {String(timeLeft.hours).padStart(2, "0")}
               </div>
-              <div className="text-xs font-medium">Hours</div>
+              <div className="text-sm font-medium">Hours</div>
             </div>
-            <div className="bg-white/70 rounded-lg py-2 shadow-lg">
-              <div className="text-lg font-bold text-[#535c4b] mb-2">
+            <div className="bg-white/70 rounded-lg py-3 border-3 border-white shadow-lg">
+              <div className="text-xl font-bold text-[#535c4b] mb-2">
                 {String(timeLeft.minutes).padStart(2, "0")}
               </div>
-              <div className="text-xs font-medium">Minutes</div>
+              <div className="text-sm font-medium">Minutes</div>
             </div>
-            <div className="bg-white/70 rounded-lg py-2 shadow-lg">
-              <div className="text-lg font-bold text-[#535c4b] mb-2">
+            <div className="bg-white/70 rounded-lg py-3 border-3 border-white shadow-lg">
+              <div className="text-xl font-bold text-[#535c4b] mb-2">
                 {String(timeLeft.seconds).padStart(2, "0")}
               </div>
-              <div className="text-xs font-medium">Seconds</div>
+              <div className="text-sm font-medium">Seconds</div>
             </div>
           </div>
 
           <div className="space-y-2">
-            <p className="text-xl font-serif">Saturday, August 22, 2026</p>
+            <p className="text-xl font-serif">Saturday, 22 August, 2026</p>
           </div>
         </div>
       </div>

@@ -13,39 +13,49 @@ type FAQItem = {
 
 const FAQS: FAQItem[] = [
   {
-    question: "Where is the wedding taking place?",
+    question: "When is the RSVP deadline?",
     answer:
-      "Our wedding will be held in Bali. The exact venue details and address will be shared closer to the date.",
+      "Please RSVP by April 30th 2026, so we can have an accurate headcount.",
   },
   {
-    question: "What is the dress code?",
+    question: "Can I bring a date?",
     answer:
-      "We’ll be going for a semi-formal / cocktail vibe. Think elevated, comfortable, and wedding-ready (and Bali-friendly!).",
-  },
-  {
-    question: "Can I bring a plus one?",
-    answer:
-      "If your invitation includes a plus one, it will be listed when you RSVP. If you’re unsure, feel free to message us.",
+      "We love that you want to share our day with someone special!\n\nTo help us plan, +1s are only invited if specifically mentioned on your invitation.\n\nIf you’re unsure, please reach out to us; we’re happy to clarify.",
   },
   {
     question: "Are kids welcome?",
     answer:
-      "We love your little ones, but this will be an adults-only celebration. Thank you for understanding.",
+      "As much as we love your little ones, we will not be including them in the ceremony or reception.\n\nHowever, we recognise that some of you will be traveling with your kids, so please reach out to us personally!",
   },
   {
-    question: "When should I RSVP by?",
+    question: "What will the weather be like?",
     answer:
-      "Please RSVP by the date shown on the RSVP page. This helps us finalise numbers, seating, and catering.",
+      "Bali in August is warm and dry, with plenty of sunshine, low humidity, and temperatures around 26–30°C.",
   },
   {
-    question: "Do you have a gift registry?",
+    question: "Where should I park?",
     answer:
-      "Your presence is the best gift. If you’d like to contribute, we’ll share a wishing well / registry option closer to the date.",
+      "For now, we recommend taking an Uber, Lyft, or Grab to the ceremony, as Nathanael and I are still finalising shuttle bus arrangements.\n\nWe’ll share updates here if any transport options become available. Thank you for your flexibility!",
   },
   {
-    question: "Any travel tips or accommodation recommendations?",
+    question: "Is the wedding indoors or outdoors?",
     answer:
-      "Yes — we’ll share a short list of nearby accommodation options, plus transport tips, on the Travel page.",
+      "Our wedding ceremony is indoors but our reception will be a blend of indoor and outdoors!",
+  },
+  {
+    question: "What should I wear?",
+    answer:
+      "Please see the dress code tab for information on what to wear. We are working to put together a mood board to make it easier!",
+  },
+  {
+    question: "Is it okay to take pictures with our phones and cameras during the wedding?",
+    answer:
+      "No Phones, Please!\n\nWe can’t wait to celebrate with you! So put your phones away, immerse yourself in the moment, and enjoy the day!\n\nWe’ve got an amazing team of photographers, videographers, and a content creator to capture every special memory, so you can relax and be fully present.",
+  },
+  {
+    question: "Whom should I call with questions?",
+    answer:
+      "If you have any questions about the wedding or travel, please don’t hesitate to call Nathanael or Victoria!\n\nWe’re happy to help with flights, accommodation, or anything in between to make your trip as smooth and memorable as possible.",
   },
 ];
 
@@ -101,7 +111,7 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="w-full bg-[#ffedf3]/90 text-[#233235] py-15 px-7 font-serif">
+    <div className="w-full bg-[#ffedf3]/90 text-[#2a2a2a] py-15 px-7 font-serif">
       <div className="max-w-4xl mx-auto text-center space-y-12">
         {/* Heading */}
         <div
@@ -114,8 +124,8 @@ export default function FAQPage() {
         >
           <h2 className="text-3xl">FAQ</h2>
           <p className="mt-3 text-sm opacity-80 italic">
-            Everything you might need to know (and if it’s not here, just message
-            us).
+            Everything you might need to know (and if it’s not here, just
+            message us).
           </p>
         </div>
 
@@ -137,7 +147,7 @@ export default function FAQPage() {
                   className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
                   aria-expanded={open}
                 >
-                  <span className="text-sm sm:text-base font-semibold text-[#233235]">
+                  <span className="text-sm sm:text-base font-semibold text-[#2a2a2a]">
                     {item.question}
                   </span>
 
@@ -149,11 +159,13 @@ export default function FAQPage() {
                 {/* Shopify-like: smooth height + fade */}
                 <div
                   className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${
-                    open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    open
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-5 pb-5 text-sm leading-relaxed text-[#233235]/80">
+                    <div className="px-5 pb-5 text-sm leading-relaxed text-[#2a2a2a]/80 whitespace-pre-line">
                       {item.answer}
                     </div>
                   </div>
