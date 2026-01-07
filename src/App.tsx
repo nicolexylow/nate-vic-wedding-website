@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import "./App.css";
 import { ScrollContext } from "./contexts/ScrollContext";
 import LandingPage from "./pages/LandingPage";
@@ -13,6 +13,7 @@ import RSVPPage from "./pages/RSVPPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import FAQPage from "./pages/FAQPage";
 import { Pause, Play } from "lucide-react";
+import { MusicToggle } from "./components/MusicToggle";
 
 function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -26,6 +27,9 @@ function App() {
   
   const [slideIndex, setSlideIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+
 
 
   useEffect(() => {
@@ -34,8 +38,6 @@ function App() {
 
     el.style.overflowY = allowScroll ? "auto" : "hidden";
   }, [allowScroll]);
-
-
 
 
   useEffect(() => {
@@ -47,6 +49,65 @@ function App() {
   
     return () => window.clearInterval(id);
   }, [paused]);
+
+
+  useEffect(() => {
+    const a = new Audio(
+      "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/wanderlust-justin-lee-main-version-29117-01-40.mp3"
+    );
+    a.loop = true;
+    a.volume = 0.35;
+    audioRef.current = a;
+  
+    const onPlay = () => setMusicPlaying(true);
+    const onPause = () => setMusicPlaying(false);
+  
+    a.addEventListener("play", onPlay);
+    a.addEventListener("pause", onPause);
+  
+    return () => {
+      a.pause();
+      a.removeEventListener("play", onPlay);
+      a.removeEventListener("pause", onPause);
+      audioRef.current = null;
+    };
+  }, []);
+  
+  const startMusic = useCallback(async () => {
+    const a = audioRef.current;
+    if (!a) return;
+  
+    // ✅ if already playing, do nothing
+    if (!a.paused) {
+      setMusicPlaying(true);
+      return;
+    }
+  
+    try {
+      await a.play();
+      setMusicPlaying(true);
+    } catch (e) {
+      console.error("Music blocked:", e);
+    }
+  }, []);
+
+  const toggleMusic = useCallback(async () => {
+    const a = audioRef.current;
+    if (!a) return;
+
+    if (musicPlaying) {
+      a.pause();
+      setMusicPlaying(false);
+      return;
+    }
+
+    try {
+      await a.play();
+      setMusicPlaying(true);
+    } catch (e) {
+      console.error("Music blocked:", e);
+    }
+  }, [musicPlaying]);
 
 
   return (
@@ -119,7 +180,7 @@ function App() {
 
           {/* CONTENT */}
           <div className="relative z-10 min-h-dvh">
-            <LandingPage />
+            <LandingPage startMusic={startMusic}  />
             <IntroPage />
             <CoupleInfoPage />
             <SaveTheDatePage />
@@ -133,6 +194,8 @@ function App() {
           </div>
         </div>
       </div>
+      <MusicToggle playing={musicPlaying}
+  toggleMusic={toggleMusic} />
     </ScrollContext.Provider>
   );
 }

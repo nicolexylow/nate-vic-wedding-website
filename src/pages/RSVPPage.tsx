@@ -48,7 +48,7 @@ export default function RSVPPage() {
           <div
             className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out `}
             style={{
-              backgroundImage: `url(https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png)`,
+              backgroundImage: "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
               backgroundSize: "cover",
               backgroundPosition: "top",
               backgroundRepeat: "no-repeat",

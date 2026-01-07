@@ -128,7 +128,7 @@ export default function EventDetailsPage() {
             >
               {" "}
               <div className="space-y-2">
-                <h3 className="text-2xl font-serif font-bold">After Party</h3>
+                <h3 className="text-2xl font-serif font-bold">Wedding Day</h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
               <div className="space-y-3">
@@ -187,7 +187,7 @@ export default function EventDetailsPage() {
             >
               <div className="space-y-2">
                 <h3 className="text-2xl font-serif font-bold">
-                  Welcome Dinner
+                  After Party
                 </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>

@@ -12,7 +12,11 @@ import {
   getScrollElement,
 } from "../contexts/ScrollContext";
 
-export default function LandingPage() {
+type LandingPageProps = {
+  startMusic: () => Promise<void>;
+};
+
+export default function LandingPage({ startMusic }: LandingPageProps) {
   const [allowScroll, setAllowScroll] = useState(false);
   const allowScrollRef = useRef(allowScroll);
   const invitationRef = useRef<HTMLDivElement | null>(null);
@@ -77,6 +81,7 @@ export default function LandingPage() {
     if (invitationRef.current) {
       scrollToElement(invitationRef.current);
     }
+    startMusic();
   }, [scrollToElement]);
 
   // Try to stop the browser from restoring scroll position automatically
