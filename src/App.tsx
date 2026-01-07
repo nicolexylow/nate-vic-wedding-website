@@ -24,13 +24,11 @@ function App() {
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/couple-intro.jpg",
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg",
   ];
-  
+
   const [slideIndex, setSlideIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [musicPlaying, setMusicPlaying] = useState(false);
-
-
 
   useEffect(() => {
     const el = scrollContainerRef.current;
@@ -39,17 +37,15 @@ function App() {
     el.style.overflowY = allowScroll ? "auto" : "hidden";
   }, [allowScroll]);
 
-
   useEffect(() => {
     if (paused || SLIDES.length <= 1) return;
-  
+
     const id = window.setInterval(() => {
       setSlideIndex((i) => (i + 1) % SLIDES.length);
     }, 5000);
-  
+
     return () => window.clearInterval(id);
   }, [paused]);
-
 
   useEffect(() => {
     const a = new Audio(
@@ -58,13 +54,13 @@ function App() {
     a.loop = true;
     a.volume = 0.35;
     audioRef.current = a;
-  
+
     const onPlay = () => setMusicPlaying(true);
     const onPause = () => setMusicPlaying(false);
-  
+
     a.addEventListener("play", onPlay);
     a.addEventListener("pause", onPause);
-  
+
     return () => {
       a.pause();
       a.removeEventListener("play", onPlay);
@@ -72,17 +68,17 @@ function App() {
       audioRef.current = null;
     };
   }, []);
-  
+
   const startMusic = useCallback(async () => {
     const a = audioRef.current;
     if (!a) return;
-  
+
     // ✅ if already playing, do nothing
     if (!a.paused) {
       setMusicPlaying(true);
       return;
     }
-  
+
     try {
       await a.play();
       setMusicPlaying(true);
@@ -109,7 +105,6 @@ function App() {
     }
   }, [musicPlaying]);
 
-
   return (
     <ScrollContext.Provider
       value={{
@@ -120,19 +115,19 @@ function App() {
     >
       <div className="sm:flex sm:h-screen sm:overflow-hidden">
         {/* Static Image on Left - Only visible on md and above */}
-<div className="hidden relative md:block md:flex-1 md:h-screen md:shrink-0 overflow-hidden">
-  {/* Slideshow images (crossfade) */}
-  {SLIDES.map((src, i) => (
-    <img
-      key={src}
-      src={src}
-      alt="Nathanael and Victoria"
-      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-        i === slideIndex ? "opacity-100" : "opacity-0"
-      }`}
-      draggable={false}
-    />
-  ))}
+        <div className="hidden relative md:block md:flex-1 md:h-screen md:shrink-0 overflow-hidden">
+          {/* Slideshow images (crossfade) */}
+          {SLIDES.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="Nathanael and Victoria"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                i === slideIndex ? "opacity-100" : "opacity-0"
+              }`}
+              draggable={false}
+            />
+          ))}
 
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/20" />
@@ -145,21 +140,31 @@ function App() {
             </h1>
             <h2 className="text-lg text-shadow-lg">22 Aug 2026</h2>
           </div>
-        </div>
 
-        {/* STOP / PLAY BUTTON */}
-  <button
-    onClick={() => setPaused((p) => !p)}
-    className="
-      absolute bottom-5 left-5 z-20
-      rounded-full px-5 py-3
-      bg-black/30 backdrop-blur-md
-      text-white hover:bg-black/40
-      transition
-    "
-  >
-    {paused ? <div className="flex gap-2 items-center"><Play size={16} /><p>Play slideshow</p></div> : <div className="flex gap-2 items-center"><Pause size={16} /><p>Pause slideshow</p></div>}
-  </button>
+          {/* STOP / PLAY BUTTON */}
+          <button
+            onClick={() => setPaused((p) => !p)}
+            className="
+            absolute bottom-5 left-5 z-20
+            rounded-full px-5 py-3
+            bg-black/30 backdrop-blur-md
+            text-white hover:bg-black/40
+            transition
+          "
+          >
+            {paused ? (
+              <div className="flex gap-2 items-center">
+                <Play size={15} />
+                <p>Play slideshow</p>
+              </div>
+            ) : (
+              <div className="flex gap-2 items-center">
+                <Pause size={15} />
+                <p>Pause slideshow</p>
+              </div>
+            )}
+          </button>
+        </div>
 
         {/* Content Area - Full width on mobile, fixed width on right for sm+ */}
         <div
@@ -180,7 +185,7 @@ function App() {
 
           {/* CONTENT */}
           <div className="relative z-10 min-h-dvh">
-            <LandingPage startMusic={startMusic}  />
+            <LandingPage startMusic={startMusic} />
             <IntroPage />
             <CoupleInfoPage />
             <SaveTheDatePage />
@@ -194,8 +199,7 @@ function App() {
           </div>
         </div>
       </div>
-      <MusicToggle playing={musicPlaying}
-  toggleMusic={toggleMusic} />
+      <MusicToggle playing={musicPlaying} toggleMusic={toggleMusic} />
     </ScrollContext.Provider>
   );
 }
