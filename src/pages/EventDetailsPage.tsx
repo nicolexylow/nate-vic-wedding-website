@@ -9,29 +9,35 @@ import {
 export default function EventDetailsPage() {
   const ceremonyRef = useRef<HTMLDivElement | null>(null);
   const receptionRef = useRef<HTMLDivElement | null>(null);
+  const thirdRef = useRef<HTMLDivElement | null>(null);
   const [ceremonyActive, setCeremonyActive] = useState(false);
   const [receptionActive, setReceptionActive] = useState(false);
+  const [thirdActive, setThirdActive] = useState(false);
   const scrollContainer = useScrollContainer();
   const isMobile = useIsMobile();
 
   useEffect(() => {
     const ceremonyEl = ceremonyRef.current;
     const receptionEl = receptionRef.current;
-    if (!ceremonyEl || !receptionEl) return;
+    const thirdEl = thirdRef.current;
+    if (!ceremonyEl || !receptionEl || !thirdEl) return;
 
     const scrollElement = getScrollElement(scrollContainer, isMobile);
 
     const handleScroll = () => {
       const ceremonyRect = ceremonyEl.getBoundingClientRect();
       const receptionRect = receptionEl.getBoundingClientRect();
+      const thirdRect = thirdEl.getBoundingClientRect();
       const viewportHeight = getViewportHeight(scrollContainer, isMobile);
 
       // Cards animate when they reach 80% of viewport
       const ceremonyTrigger = ceremonyRect.top <= viewportHeight * 0.8;
       const receptionTrigger = receptionRect.top <= viewportHeight * 0.8;
+      const thirdTrigger = thirdRect.top <= viewportHeight * 0.8;
 
       setCeremonyActive(ceremonyTrigger);
       setReceptionActive(receptionTrigger);
+      setThirdActive(thirdTrigger);
     };
 
     handleScroll();
@@ -168,8 +174,9 @@ export default function EventDetailsPage() {
 
           {/* Last */}
           <div
+          ref={thirdRef}
             className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
-              ceremonyActive
+              thirdActive
                 ? "-translate-y-15 scale-100 opacity-100"
                 : "-translate-y-12 scale-90 opacity-50"
             }`}
