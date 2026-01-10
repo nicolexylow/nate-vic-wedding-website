@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   useScrollContainer,
   useIsMobile,
@@ -14,8 +14,7 @@ type FAQItem = {
 const FAQS: FAQItem[] = [
   {
     question: "When is the RSVP deadline?",
-    answer:
-      "Please RSVP by April 30th 2026, so we can have an accurate headcount.",
+    answer: "Please RSVP by April 30th 2026, so we can have an accurate headcount.",
   },
   {
     question: "Can I bring a date?",
@@ -48,7 +47,8 @@ const FAQS: FAQItem[] = [
       "Please see the dress code tab for information on what to wear. We are working to put together a mood board to make it easier!",
   },
   {
-    question: "Is it okay to take pictures with our phones and cameras during the wedding?",
+    question:
+      "Is it okay to take pictures with our phones and cameras during the wedding?",
     answer:
       "No Phones, Please!\n\nWe can’t wait to celebrate with you! So put your phones away, immerse yourself in the moment, and enjoy the day!\n\nWe’ve got an amazing team of photographers, videographers, and a content creator to capture every special memory, so you can relax and be fully present.",
   },
@@ -87,6 +87,20 @@ export default function FAQPage() {
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  // one "active" per FAQ card (for scroll-in animation)
+  const [activeCards, setActiveCards] = useState<boolean[]>(
+    () => new Array(FAQS.length).fill(false)
+  );
+
+  // stable refs for each card
+  const cardRefs = useMemo(
+    () =>
+      Array.from({ length: FAQS.length }, () =>
+        ({ current: null } as React.RefObject<HTMLDivElement | null>)
+      ),
+    []
+  );
+
   useEffect(() => {
     const sectionEl = sectionRef.current;
     const scrollElement = getScrollElement(scrollContainer, isMobile);
@@ -94,24 +108,42 @@ export default function FAQPage() {
     const handleScroll = () => {
       const viewportHeight = getViewportHeight(scrollContainer, isMobile);
 
+      // section heading trigger (keep yours)
       if (sectionEl) {
         const rect = sectionEl.getBoundingClientRect();
-        const trigger = rect.top + rect.height * 0.15 <= viewportHeight * 0.85;
+        const trigger = rect.top <= viewportHeight * 0.9;
         setSectionActive(trigger);
       }
+
+      // per-card trigger (like EventDetails)
+      setActiveCards((prev) => {
+        const next = [...prev];
+        for (let i = 0; i < cardRefs.length; i++) {
+          const el = cardRefs[i].current;
+          if (!el) continue;
+
+          const r = el.getBoundingClientRect();
+          // same idea: animate when it reaches ~00% of viewport
+          const trigger = r.top <= viewportHeight * 0.9;
+
+          // only flip on once (prevents rerenders while scrolling)
+          if (trigger && !next[i]) next[i] = true;
+        }
+        return next;
+      });
     };
 
     handleScroll();
     scrollElement.addEventListener("scroll", handleScroll, { passive: true });
     return () => scrollElement.removeEventListener("scroll", handleScroll);
-  }, [scrollContainer, isMobile]);
+  }, [scrollContainer, isMobile, cardRefs]);
 
   const toggle = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
   return (
-    <div className="w-full bg-[#ffedf3]/90 text-[#2a2a2a] py-15 px-7 font-serif">
+    <div className="w-full bg-[#ffedf3]/90 text-[#2a2a2a] pt-18 pb-5 px-7 font-serif">
       <div className="max-w-4xl mx-auto text-center space-y-12">
         {/* Heading */}
         <div
@@ -124,21 +156,25 @@ export default function FAQPage() {
         >
           <h2 className="text-3xl">FAQ</h2>
           <p className="mt-3 text-sm opacity-80 italic">
-            Everything you might need to know (and if it’s not here, just
-            message us).
+            Everything you might need to know (and if it’s not here, just message
+            us).
           </p>
         </div>
 
         {/* Accordion */}
-        <div className="text-left space-y-3">
+        <div className="text-left space-y-3 pt-12">
           {FAQS.map((item, idx) => {
             const open = openIndex === idx;
+            const cardActive = activeCards[idx];
 
             return (
               <div
                 key={item.question}
-                className={`rounded-xl bg-white/70 shadow-lg border-3 border-white backdrop-blur-sm overflow-hidden transition-all duration-500 ${
-                  sectionActive ? "opacity-100" : "opacity-70"
+                ref={cardRefs[idx]}
+                className={`rounded-xl bg-white/70 shadow-lg border-3 border-white backdrop-blur-sm overflow-hidden transition-all duration-1000 ease-out ${
+                  cardActive
+                    ? "-translate-y-15 scale-100 opacity-100"
+                    : "-translate-y-12 scale-90 opacity-50"
                 }`}
               >
                 <button
@@ -156,7 +192,7 @@ export default function FAQPage() {
                   </span>
                 </button>
 
-                {/* Shopify-like: smooth height + fade */}
+                {/* Smooth open/close */}
                 <div
                   className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${
                     open

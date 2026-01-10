@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useScrollContainer,
+  useIsMobile,
+  getScrollElement,
+  getViewportHeight,
+} from "../contexts/ScrollContext";
 
-export default function GalleryPage() {
-  // Placeholder images - replace with actual wedding photos
+type GalleryPageProps = {
+  setGalleryModalOpen?: (open: boolean) => void;
+};
+
+export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
   const images = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
     src: `https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg`,
@@ -10,13 +19,76 @@ export default function GalleryPage() {
 
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
+  // 🔥 tell parent whenever modal opens/closes
+  useEffect(() => {
+    setGalleryModalOpen?.(selectedImage !== null);
+    return () => setGalleryModalOpen?.(false); // cleanup if unmount
+  }, [selectedImage, setGalleryModalOpen]);
+
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [sectionActive, setSectionActive] = useState(false);
+
+  const scrollContainer = useScrollContainer();
+  const isMobile = useIsMobile();
+
+  const [activeCards, setActiveCards] = useState<boolean[]>(
+    () => new Array(images.length).fill(false)
+  );
+
+  const cardRefs = useMemo(
+    () =>
+      Array.from({ length: images.length }, () =>
+        ({ current: null } as React.RefObject<HTMLDivElement | null>)
+      ),
+    []
+  );
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    const scrollElement = getScrollElement(scrollContainer, isMobile);
+
+    const handleScroll = () => {
+      const viewportHeight = getViewportHeight(scrollContainer, isMobile);
+
+      if (sectionEl) {
+        const rect = sectionEl.getBoundingClientRect();
+        const trigger = rect.top <= viewportHeight * 0.8;
+        setSectionActive(trigger);
+      }
+
+      setActiveCards((prev) => {
+        const next = [...prev];
+        for (let i = 0; i < cardRefs.length; i++) {
+          const el = cardRefs[i].current;
+          if (!el) continue;
+
+          const r = el.getBoundingClientRect();
+          const trigger = r.top <= viewportHeight * 0.8;
+          if (trigger && !next[i]) next[i] = true;
+        }
+        return next;
+      });
+    };
+
+    handleScroll();
+    scrollElement.addEventListener("scroll", handleScroll, { passive: true });
+    return () => scrollElement.removeEventListener("scroll", handleScroll);
+  }, [scrollContainer, isMobile, cardRefs]);
+
   return (
     <div className="w-full text-[#2a2a2a] py-12 px-4">
       <div
-        className="max-w-6xl mx-auto space-y-12 bg-white/90 border-6 border-white px-5 py-10 rounded-2xl"
+        className="max-w-6xl mx-auto space-y-12 bg-white/90 border-6 border-white px-5 pt-18 pb-3 rounded-2xl"
         style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
       >
-        <div className="text-center space-y-4">
+        <div
+          ref={sectionRef}
+          className={`text-center space-y-4 pb-10 transition-all duration-1500 ease-out ${
+            sectionActive
+              ? "-translate-y-2 scale-100 opacity-100"
+              : "scale-95 opacity-60"
+          }`}
+        >
           <h2 className="text-3xl font-serif">Our Gallery</h2>
           <p className="text-md text-[#535c4b]">
             Memories we've shared together
@@ -24,28 +96,39 @@ export default function GalleryPage() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="aspect-square overflow-hidden rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
-              onClick={() => setSelectedImage(image.id)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          {images.map((image, idx) => {
+            const cardActive = activeCards[idx];
+
+            return (
+              <div
+                key={image.id}
+                ref={cardRefs[idx]}
+                className={`aspect-square overflow-hidden rounded-lg shadow-lg cursor-pointer transition-all duration-1000 ease-out ${
+                  cardActive
+                    ? "-translate-y-15 scale-100 opacity-100"
+                    : "-translate-y-12 scale-90 opacity-50"
+                } hover:scale-105`}
+                onClick={() => setSelectedImage(image.id)}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
         </div>
 
-        {/* Modal for full-size image */}
         {selectedImage && (
           <div
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative max-w-4xl max-h-[90vh]">
+            <div
+              className="relative max-w-4xl max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
               <img
                 src={images[selectedImage - 1].src}
                 alt={images[selectedImage - 1].alt}

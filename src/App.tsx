@@ -26,6 +26,7 @@ function App() {
   ];
 
   const [slideIndex, setSlideIndex] = useState(0);
+  const [galleryModalOpen, setGalleryModalOpen] = useState(false);
   const [paused, setPaused] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [musicPlaying, setMusicPlaying] = useState(false);
@@ -142,28 +143,30 @@ function App() {
           </div>
 
           {/* STOP / PLAY BUTTON */}
-          <button
-            onClick={() => setPaused((p) => !p)}
-            className="
-            absolute bottom-5 left-5 z-20
-            rounded-full px-5 py-3
-            bg-black/30 backdrop-blur-md
-            text-white hover:bg-black/40
-            transition
-          "
-          >
-            {paused ? (
-              <div className="flex gap-2 items-center">
-                <Play size={15} />
-                <p>Play slideshow</p>
-              </div>
-            ) : (
-              <div className="flex gap-2 items-center">
-                <Pause size={15} />
-                <p>Pause slideshow</p>
-              </div>
-            )}
-          </button>
+          {!galleryModalOpen && (
+            <button
+              onClick={() => setPaused((p) => !p)}
+              className="
+      absolute bottom-5 left-5 z-20
+      rounded-full px-5 py-3
+      bg-black/30 backdrop-blur-md
+      text-white hover:bg-black/40
+      transition
+    "
+            >
+              {paused ? (
+                <div className="flex gap-2 items-center">
+                  <Play size={15} />
+                  <p>Play slideshow</p>
+                </div>
+              ) : (
+                <div className="flex gap-2 items-center">
+                  <Pause size={15} />
+                  <p>Pause slideshow</p>
+                </div>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Content Area - Full width on mobile, fixed width on right for sm+ */}
@@ -192,7 +195,7 @@ function App() {
             <EventDetailsPage />
             <DressCodePage />
             <FAQPage />
-            <GalleryPage />
+            <GalleryPage setGalleryModalOpen={setGalleryModalOpen}/>
             <RSVPPage />
             <GiftRegistryPage />
             <ThankYouPage />
