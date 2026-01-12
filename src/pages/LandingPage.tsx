@@ -18,6 +18,7 @@ type LandingPageProps = {
 
 export default function LandingPage({ startMusic }: LandingPageProps) {
   const [allowScroll, setAllowScroll] = useState(false);
+  const [isPressedOnce, setIsPressedOnce] = useState(false);
   const allowScrollRef = useRef(allowScroll);
   const invitationRef = useRef<HTMLDivElement | null>(null);
   const scrollContainer = useScrollContainer();
@@ -77,6 +78,7 @@ export default function LandingPage({ startMusic }: LandingPageProps) {
   );
 
   const handleOpenInvitation = useCallback(() => {
+    setIsPressedOnce(true);
     setAllowScroll(true);
     if (invitationRef.current) {
       scrollToElement(invitationRef.current);
@@ -157,23 +159,31 @@ export default function LandingPage({ startMusic }: LandingPageProps) {
         <img
           src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
           alt="Nathanael and Victoria"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-bottom"
         />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/30" />
 
-        <div className="relative z-10 flex min-h-svh flex-col items-center justify-between px-6 py-15 text-white">
+        <div className="relative z-10 flex min-h-svh flex-col items-center justify-between px-6 py-20 text-white">
           <div className="w-full text-center space-y-3">
-            <h2 className="text-md text-shadow-lg">The wedding of</h2>
-            <h1 className="text-2xl italic text-shadow-lg">
+            <h2 className="text-lg text-shadow-lg italic">The Wedding of</h2>
+            <h1 className="text-5xl italic text-shadow-lg font-['Kapakana']">
               Nathanael & Victoria
             </h1>
           </div>
 
           <button
             onClick={handleOpenInvitation}
-            className="rounded-full mb-10 font-medium text-sm bg-white px-6 py-2 text-[#2a2a2a] shadow-lg transition hover:shadow-xl focus:outline-none"
+            className={`
+              rounded-full font-medium text-sm
+              bg-white px-6 py-2 text-[#2a2a2a]
+              shadow-lg
+              hover:shadow-xl
+              focus:outline-none
+              transition-transform
+              ${!isPressedOnce && "animate-scale"}
+            `}
           >
             Open Invitation
           </button>

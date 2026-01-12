@@ -131,15 +131,15 @@ function App() {
           ))}
 
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-black/30" />
 
           {/* Text overlay */}
           <div className="absolute inset-0 z-10 flex items-center justify-center flex-col gap-3 text-white px-3">
-            <p className="text-shadow-lg text-xl">The Wedding of</p>
-            <h1 className="text-4xl italic text-shadow-lg">
+            <p className="text-shadow-lg text-2xl italic">The Wedding of</p>
+            <h1 className="text-6xl italic text-shadow-lg font-['Kapakana']">
               Nathanael & Victoria
             </h1>
-            <h2 className="text-lg text-shadow-lg">22 Aug 2026</h2>
+            <h2 className="text-lg text-shadow-lg font-sans">22 Aug 2026</h2>
           </div>
 
           {/* STOP / PLAY BUTTON */}

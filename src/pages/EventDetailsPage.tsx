@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { sanityClient } from "../lib/sanity";
 import {
   useScrollContainer,
   useIsMobile,
@@ -6,7 +7,24 @@ import {
   getViewportHeight,
 } from "../contexts/ScrollContext";
 
+type EventDoc = {
+  title: string;
+  day: string;
+  date: string;
+  description?: string[];
+  button?: string;
+};
+
+const query = `*[_type == "event"][0]{
+  title,
+  day,
+  date,
+  description,
+  locationUrl
+}`;
+
 export default function EventDetailsPage() {
+  const [event, setEvent] = useState<EventDoc | null>(null);
   const ceremonyRef = useRef<HTMLDivElement | null>(null);
   const receptionRef = useRef<HTMLDivElement | null>(null);
   const thirdRef = useRef<HTMLDivElement | null>(null);
@@ -15,6 +33,10 @@ export default function EventDetailsPage() {
   const [thirdActive, setThirdActive] = useState(false);
   const scrollContainer = useScrollContainer();
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    sanityClient.fetch(query).then(setEvent).catch(console.error);
+  }, []);
 
   useEffect(() => {
     const ceremonyEl = ceremonyRef.current;
@@ -71,7 +93,7 @@ export default function EventDetailsPage() {
             >
               <div className="space-y-2">
                 <h3 className="text-2xl font-serif font-bold">
-                  Welcome Dinner
+                  {event?.title ?? "Loading..."}
                 </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>

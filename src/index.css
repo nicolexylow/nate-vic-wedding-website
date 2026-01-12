@@ -45,6 +45,24 @@ button:hover {
   cursor: pointer;
 }
 
+@keyframes scale-up-down {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-scale {
+  animation: scale-up-down 2.5s ease-in-out infinite;
+}
+
+.animate-scale:hover {
+  animation: none;
+  transform: scale(1.1);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
