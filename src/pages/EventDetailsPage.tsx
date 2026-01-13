@@ -7,24 +7,33 @@ import {
   getViewportHeight,
 } from "../contexts/ScrollContext";
 
-type EventDoc = {
-  title: string;
-  day: string;
-  date: string;
-  description?: string[];
-  button?: string;
+type EventButton = {
+  title?: string;
+  url?: string;
 };
 
-const query = `*[_type == "event"][0]{
+type Event = {
+  eventKey: "welcome-dinner" | "wedding-day" | "after-party";
+  title?: string;
+  day?: string;
+  date?: string;
+  description?: string[];
+  button?: EventButton;
+};
+
+const query = `*[_type == "event" && eventKey in ["welcome-dinner","wedding-day","after-party"]]{
+  eventKey,
   title,
   day,
   date,
   description,
-  locationUrl
+  button
 }`;
 
 export default function EventDetailsPage() {
-  const [event, setEvent] = useState<EventDoc | null>(null);
+  const [event, setEvent] = useState<
+    Partial<Record<Event["eventKey"], Event>>
+  >({});
   const ceremonyRef = useRef<HTMLDivElement | null>(null);
   const receptionRef = useRef<HTMLDivElement | null>(null);
   const thirdRef = useRef<HTMLDivElement | null>(null);
@@ -34,8 +43,16 @@ export default function EventDetailsPage() {
   const scrollContainer = useScrollContainer();
   const isMobile = useIsMobile();
 
+  const welcome = event["welcome-dinner"];
+  const wedding = event["wedding-day"];
+  const after = event["after-party"];
+
   useEffect(() => {
-    sanityClient.fetch(query).then(setEvent).catch(console.error);
+    sanityClient.fetch<Event[]>(query).then((docs) => {
+      const map: Partial<Record<Event["eventKey"], Event>> = {};
+      docs.forEach((d) => (map[d.eventKey] = d));
+      setEvent(map);
+    });
   }, []);
 
   useEffect(() => {
@@ -93,7 +110,7 @@ export default function EventDetailsPage() {
             >
               <div className="space-y-2">
                 <h3 className="text-2xl font-serif font-bold">
-                  {event?.title ?? "Loading..."}
+                  {welcome?.title ?? "Welcome Dinner"}
                 </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
@@ -127,7 +144,7 @@ export default function EventDetailsPage() {
                       );
                     }}
                   >
-                    Location
+                    {welcome?.button?.title ?? "Location"}
                   </button>
                 </div>
               </div>
@@ -156,7 +173,7 @@ export default function EventDetailsPage() {
             >
               {" "}
               <div className="space-y-2">
-                <h3 className="text-2xl font-serif font-bold">Wedding Day</h3>
+                <h3 className="text-2xl font-serif font-bold">{wedding?.title ?? "Wedding Day"}</h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
               <div className="space-y-3">
@@ -196,7 +213,7 @@ export default function EventDetailsPage() {
 
           {/* Last */}
           <div
-          ref={thirdRef}
+            ref={thirdRef}
             className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
               thirdActive
                 ? "-translate-y-15 scale-100 opacity-100"
@@ -215,9 +232,7 @@ export default function EventDetailsPage() {
               style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
             >
               <div className="space-y-2">
-                <h3 className="text-2xl font-serif font-bold">
-                  After Party
-                </h3>
+                <h3 className="text-2xl font-serif font-bold">{after?.title ?? "After Party"}</h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
 
@@ -252,13 +267,10 @@ export default function EventDetailsPage() {
                     <button
                       className="rounded-full text-md py-2 px-10 bg-[#ffe4e6]"
                       onClick={() => {
-                        window.open(
-                          "https://whiterockbali.com/",
-                          "_blank"
-                        );
+                        window.open("https://whiterockbali.com/", "_blank");
                       }}
                     >
-                      Booking Link
+                      {after?.button?.title ?? "Booking Link"}
                     </button>
                   </div>
                 </div>
