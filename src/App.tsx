@@ -20,9 +20,12 @@ function App() {
   const [allowScroll, setAllowScroll] = useState(false);
 
   const SLIDES = [
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/DSC09046.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/couple-intro.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC01859.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09046.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09158.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09188.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09441.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09520.jpg"
   ];
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -43,7 +46,7 @@ function App() {
 
     const id = window.setInterval(() => {
       setSlideIndex((i) => (i + 1) % SLIDES.length);
-    }, 5000);
+    }, 8000);
 
     return () => window.clearInterval(id);
   }, [paused]);

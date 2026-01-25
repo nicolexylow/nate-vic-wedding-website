@@ -11,9 +11,27 @@ type GalleryPageProps = {
 };
 
 export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
-  const images = Array.from({ length: 12 }, (_, i) => ({
+
+  const SOURCE = [
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/DJI_0302.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/DSC01516.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/DSC01533.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_0315.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_1831.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_2834.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_3715.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_4634.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_6824.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7024.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7025+1.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7151.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7436.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_8485.jpg",
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_9497.jpg"
+  ]
+  const images = SOURCE.map((source, i) => ({
     id: i + 1,
-    src: `https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg`,
+    src: source,
     alt: `Gallery image ${i + 1}`,
   }));
 
