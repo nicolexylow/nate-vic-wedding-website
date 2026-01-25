@@ -25,7 +25,7 @@ function App() {
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09158.jpg",
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09188.jpg",
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09441.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09520.jpg"
+    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09520.jpg",
   ];
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -198,7 +198,7 @@ function App() {
             <EventDetailsPage />
             <DressCodePage />
             <FAQPage />
-            <GalleryPage setGalleryModalOpen={setGalleryModalOpen}/>
+            <GalleryPage setGalleryModalOpen={setGalleryModalOpen} />
             <RSVPPage />
             <GiftRegistryPage />
             <ThankYouPage />
