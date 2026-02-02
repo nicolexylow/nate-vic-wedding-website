@@ -4,7 +4,6 @@ import { ScrollContext } from "./contexts/ScrollContext";
 import LandingPage from "./pages/LandingPage";
 import IntroPage from "./pages/IntroPage";
 import SaveTheDatePage from "./pages/SaveTheDatePage";
-import CoupleInfoPage from "./pages/CoupleInfoPage";
 import EventDetailsPage from "./pages/EventDetailsPage";
 import DressCodePage from "./pages/DressCodePage";
 import GalleryPage from "./pages/GalleryPage";
