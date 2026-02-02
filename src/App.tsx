@@ -21,11 +21,9 @@ function App() {
 
   const SLIDES = [
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC01859.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09046.jpg",
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09158.jpg",
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09188.jpg",
     "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09441.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09520.jpg",
   ];
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -193,18 +191,27 @@ function App() {
           <div className="relative z-10 min-h-dvh">
             <LandingPage startMusic={startMusic} />
             <IntroPage />
-            <CoupleInfoPage />
             <SaveTheDatePage />
             <EventDetailsPage />
+            <RSVPPage />
             <DressCodePage />
             <FAQPage />
             <GalleryPage setGalleryModalOpen={setGalleryModalOpen} />
-            <RSVPPage />
             <GiftRegistryPage />
             <ThankYouPage />
           </div>
+          <button className="fixed bottom-5 right-20 z-50 rounded-full p-3 text-sm bg-black/30 backdrop-blur-md text-white hover:bg-black/40"
+           onClick={() => {
+            window.open(
+              "https://partiful.com/e/fYbMarqjQpt8xUPg02Jd",
+              "_blank"
+            );
+          }}>
+            Live Updates
+          </button>
         </div>
       </div>
+
       <MusicToggle playing={musicPlaying} toggleMusic={toggleMusic} />
     </ScrollContext.Provider>
   );

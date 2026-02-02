@@ -1,13 +1,12 @@
 import { Volume2, VolumeX } from "lucide-react";
 
-
 export function MusicToggle({
-    playing,
-    toggleMusic,
-  }: {
-    playing: boolean;
-    toggleMusic: () => void;
-  }) {
+  playing,
+  toggleMusic,
+}: {
+  playing: boolean;
+  toggleMusic: () => void;
+}) {
   return (
     <button
       onClick={toggleMusic}

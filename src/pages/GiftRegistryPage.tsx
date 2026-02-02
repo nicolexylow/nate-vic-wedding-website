@@ -97,13 +97,14 @@ export default function GiftRegistryPage() {
 
             <div className="space-y-4">
               <div>
-                <p className="text-lg mb-2">Bank Name</p>
+                <p className="text-lg mb-2">Commonwealth Bank</p>
 
                 {/* This looked like an account number before — rename label if needed */}
-                <p className="text-xl font-bold text-[#535c4b]">1234567890</p>
+                <p className="text-md font-bold text-[#535c4b]"><span className="font-medium">BSB:</span> 062948</p>
+                <p className="text-md font-bold text-[#535c4b]"><span className="font-medium">Account No:</span> 14379255</p>
 
-                <p className="text-md text-[#535c4b] mt-1">
-                  Account Name: Nathanael & Victoria
+                <p className="text-md font-bold text-[#535c4b] mt-1">
+                <span className="font-medium">Account Name:</span> Laurentius Mualim
                 </p>
               </div>
             </div>

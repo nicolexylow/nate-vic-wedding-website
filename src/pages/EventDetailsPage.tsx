@@ -110,6 +110,68 @@ export default function EventDetailsPage() {
             >
               <div className="space-y-2">
                 <h3 className="text-2xl font-serif font-bold">
+                  {welcome?.title ?? "Bachelor/Bachelorette"}
+                </h3>
+                <div className="w-20 h-0.5 mx-auto"></div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="space-y-1">
+                  <p className="text-xl">Wednesday</p>
+                  <p className="text-xl font-bold text-[#535c4b]">
+                    19 August 2026
+                  </p>
+                </div>
+
+                <div className="space-y-3 text-sm py-2">
+                  <p>
+                    The welcome dinner is all about kicking things off with good
+                    food, great company, and a relaxed evening together.
+                  </p>
+                  <p>
+                    It’s the perfect chance to settle in, mingle, and start
+                    celebrating before the big day ahead.
+                  </p>
+                </div>
+
+                <div className="space-y-1 pt-4">
+                  <button
+                    className="rounded-full py-2 px-10 bg-[#ffe4e6]"
+                    onClick={() => {
+                      window.open(
+                        "https://maps.app.goo.gl/fRCy8UgW6tQ79yiT7",
+                        "_blank"
+                      );
+                    }}
+                  >
+                    {welcome?.button?.title ?? "Location"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Ceremony */}
+          <div
+            ref={ceremonyRef}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
+              ceremonyActive
+                ? "-translate-y-15 scale-100 opacity-100"
+                : "-translate-y-12 scale-90 opacity-50"
+            }`}
+            style={{
+              backgroundImage:
+                "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
+              backgroundSize: "cover",
+              backgroundPosition: "top",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div
+              className="bg-white/90 rounded-2xl border-white border-5 p-8 shadow-lg text-center space-y-6"
+              style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
+            >
+              <div className="space-y-2">
+                <h3 className="text-2xl font-serif font-bold">
                   {welcome?.title ?? "Welcome Dinner"}
                 </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>

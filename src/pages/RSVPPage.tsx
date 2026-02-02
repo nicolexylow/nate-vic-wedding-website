@@ -34,7 +34,7 @@ export default function RSVPPage() {
   }, [scrollContainer, isMobile]);
 
   return (
-    <div className="w-full bg-[#ffedf3] text-[#2a2a2a] py-4 pt-15 px-6">
+    <div className="w-full bg-[#ffedf3]/80 text-[#2a2a2a] py-4 pt-15 px-6">
       <div className="max-w-5xl mx-auto space-y-16 font-serif">
         <div
           className={`grid gap-8 rounded-2xl p-4 pt-20 relative overflow-hidden transition-all duration-1500 ease-out ${
@@ -45,15 +45,7 @@ export default function RSVPPage() {
           ref={rsvpRef}
         >
           {/* Ceremony */}
-          <div
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out `}
-            style={{
-              backgroundImage: "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
-              backgroundSize: "cover",
-              backgroundPosition: "top",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
+
             <div
               className="bg-white/90 rounded-2xl border-white border-5 p-8 shadow-lg text-center space-y-6"
               style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
@@ -83,6 +75,5 @@ export default function RSVPPage() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

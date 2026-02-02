@@ -52,9 +52,16 @@ export default function IntroPage() {
       }}
     >
       <div className="mt-14 -mb-5 font-serif">
+      <div className="mt-5"
+        >
+          <h2 className="text-2xl">We Are Getting Married!</h2>
+          <p className="text-base text-[#696969] max-w-2xl mx-auto italic">
+            "Two souls, one heart. Two lives, one path. Two people, one love."
+          </p>
+        </div>
         <div
           ref={imageRef}
-          className={`w-full aspect-square overflow-hidden rounded-2xl relative z-20 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.2)] ${
+          className={`w-full aspect-square overflow-hidden mt-12 rounded-2xl relative z-20 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.2)] ${
             imageActive
               ? "-translate-y-4 scale-100 opacity-100"
               : "scale-90 opacity-80"

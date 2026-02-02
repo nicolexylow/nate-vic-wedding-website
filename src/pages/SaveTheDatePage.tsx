@@ -87,7 +87,7 @@ export default function SaveTheDatePage() {
           }`}
           ref={headingRef}
         >
-          <h2 className="text-3xl">Save The Date</h2>
+          <h2 className="text-3xl italic">Our Forever Starts In...</h2>
         </div>
 
         <div
