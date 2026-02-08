@@ -15,7 +15,6 @@ import DSC01781 from "../assets/gallery/DSC01781.jpg";
 import DSC01808 from "../assets/gallery/DSC01808.jpg";
 import DSC09015 from "../assets/gallery/DSC09015.jpg";
 import DSC09269 from "../assets/gallery/DSC09269.jpg";
-import IMG_7436 from "../assets/gallery/IMG_7436.jpg";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type GalleryPageProps = {
@@ -25,8 +24,6 @@ type GalleryPageProps = {
 export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
 
   const SOURCE = [
-    DSC01516,
-    DSC01533,
     DSC01702,
     DSC01716,
     DSC01726,
@@ -35,7 +32,8 @@ export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
     DSC01808,
     DSC09015,
     DSC09269,
-    IMG_7436,
+    DSC01516,
+    DSC01533,
   ]
   const images = SOURCE.map((source, i) => ({
     id: i + 1,
