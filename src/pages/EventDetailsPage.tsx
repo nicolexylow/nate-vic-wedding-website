@@ -34,9 +34,11 @@ export default function EventDetailsPage() {
   const [event, setEvent] = useState<
     Partial<Record<Event["eventKey"], Event>>
   >({});
+  const bachelorRef = useRef<HTMLDivElement | null>(null);
   const ceremonyRef = useRef<HTMLDivElement | null>(null);
   const receptionRef = useRef<HTMLDivElement | null>(null);
   const thirdRef = useRef<HTMLDivElement | null>(null);
+  const [bachelorActive, setBachelorActive] = useState(false);
   const [ceremonyActive, setCeremonyActive] = useState(false);
   const [receptionActive, setReceptionActive] = useState(false);
   const [thirdActive, setThirdActive] = useState(false);
@@ -56,24 +58,28 @@ export default function EventDetailsPage() {
   }, []);
 
   useEffect(() => {
+    const bachelorEl = bachelorRef.current;
     const ceremonyEl = ceremonyRef.current;
     const receptionEl = receptionRef.current;
     const thirdEl = thirdRef.current;
-    if (!ceremonyEl || !receptionEl || !thirdEl) return;
+    if (!bachelorEl || !ceremonyEl || !receptionEl || !thirdEl) return;
 
     const scrollElement = getScrollElement(scrollContainer, isMobile);
 
     const handleScroll = () => {
+      const bachelorRect = bachelorEl.getBoundingClientRect();
       const ceremonyRect = ceremonyEl.getBoundingClientRect();
       const receptionRect = receptionEl.getBoundingClientRect();
       const thirdRect = thirdEl.getBoundingClientRect();
       const viewportHeight = getViewportHeight(scrollContainer, isMobile);
 
       // Cards animate when they reach 80% of viewport
+      const bachelorTrigger = bachelorRect.top <= viewportHeight * 0.8;
       const ceremonyTrigger = ceremonyRect.top <= viewportHeight * 0.8;
       const receptionTrigger = receptionRect.top <= viewportHeight * 0.8;
       const thirdTrigger = thirdRect.top <= viewportHeight * 0.8;
 
+      setBachelorActive(bachelorTrigger);
       setCeremonyActive(ceremonyTrigger);
       setReceptionActive(receptionTrigger);
       setThirdActive(thirdTrigger);
@@ -90,12 +96,11 @@ export default function EventDetailsPage() {
         <div className="grid gap-8">
           {/* Ceremony */}
           <div
-            ref={ceremonyRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
-              ceremonyActive
-                ? "-translate-y-15 scale-100 opacity-100"
-                : "-translate-y-12 scale-90 opacity-50"
-            }`}
+            ref={bachelorRef}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${bachelorActive
+              ? "-translate-y-15 scale-100 opacity-100"
+              : "-translate-y-12 scale-90 opacity-50"
+              }`}
             style={{
               backgroundImage:
                 "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
@@ -110,7 +115,7 @@ export default function EventDetailsPage() {
             >
               <div className="space-y-2">
                 <h3 className="text-2xl font-serif font-bold">
-                  {welcome?.title ?? "Bachelor/Bachelorette"}
+                  {welcome?.title ?? "Bachelor/Bachelorette Celebrations"}
                 </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
@@ -125,27 +130,18 @@ export default function EventDetailsPage() {
 
                 <div className="space-y-3 text-sm py-2">
                   <p>
-                    The welcome dinner is all about kicking things off with good
-                    food, great company, and a relaxed evening together.
+                    Nathanael and Victoria will be holding their respective Bachelor and Bachelorette celebrations.
+
                   </p>
                   <p>
-                    It’s the perfect chance to settle in, mingle, and start
-                    celebrating before the big day ahead.
+                    All are welcome to join in the celebrations! More details will be shared at a later date by the Best Man and Maid of Honour.
                   </p>
-                </div>
-
-                <div className="space-y-1 pt-4">
-                  <button
-                    className="rounded-full py-2 px-10 bg-[#ffe4e6]"
-                    onClick={() => {
-                      window.open(
-                        "https://maps.app.goo.gl/fRCy8UgW6tQ79yiT7",
-                        "_blank"
-                      );
-                    }}
-                  >
-                    {welcome?.button?.title ?? "Location"}
-                  </button>
+                  <p>
+                    If you would like to attend, please be sure to RSVP, so we can send out invitations and plan the events accordingly.
+                  </p>
+                  <p>
+                    We hope you can celebrate with us!
+                  </p>
                 </div>
               </div>
             </div>
@@ -153,11 +149,10 @@ export default function EventDetailsPage() {
           {/* Ceremony */}
           <div
             ref={ceremonyRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
-              ceremonyActive
-                ? "-translate-y-15 scale-100 opacity-100"
-                : "-translate-y-12 scale-90 opacity-50"
-            }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${ceremonyActive
+              ? "-translate-y-15 scale-100 opacity-100"
+              : "-translate-y-12 scale-90 opacity-50"
+              }`}
             style={{
               backgroundImage:
                 "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
@@ -216,11 +211,10 @@ export default function EventDetailsPage() {
           {/* Reception */}
           <div
             ref={receptionRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1000 ease-out ${
-              receptionActive
-                ? "-translate-y-15 scale-100 opacity-100"
-                : "-translate-y-12 scale-90 opacity-50"
-            }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1000 ease-out ${receptionActive
+              ? "-translate-y-15 scale-100 opacity-100"
+              : "-translate-y-12 scale-90 opacity-50"
+              }`}
             style={{
               backgroundImage:
                 "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
@@ -259,14 +253,12 @@ export default function EventDetailsPage() {
                     <p className="font-semibold">Reception</p>
                     <p className="text-sm pt-2">
                       Following the ceremony, guests are invited to continue the
-                      celebration at{" "}
-                      <span className="font-semibold">
-                        Glasshouse by Tirtha
-                      </span>{" "}
-                      for cocktails, dinner, and dancing. There will be a
-                      shuttle service provided on the day to transport guests
-                      between locations.
+                      celebration at Glasshouse by Tirtha
+                      for cocktails, dinner, and dancing.
                     </p>
+                    <p className="text-sm pt-3">There will be a
+                      shuttle service provided on the day to transport guests
+                      between locations.</p>
                   </div>
                 </div>
               </div>
@@ -276,11 +268,10 @@ export default function EventDetailsPage() {
           {/* Last */}
           <div
             ref={thirdRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
-              thirdActive
-                ? "-translate-y-15 scale-100 opacity-100"
-                : "-translate-y-12 scale-90 opacity-50"
-            }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${thirdActive
+              ? "-translate-y-15 scale-100 opacity-100"
+              : "-translate-y-12 scale-90 opacity-50"
+              }`}
             style={{
               backgroundImage:
                 "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
@@ -307,17 +298,14 @@ export default function EventDetailsPage() {
                 </div>
 
                 <div className="space-y-4 py-2">
-                  <p className="border-b text-sm  border-gray-300 pb-5">
-                    Let’s end the weekend the way Bali does best — relaxed,
-                    vibrant, and full of good vibes. Join us for the afterparty
-                    to soak up the atmosphere, enjoy great music, and spend a
-                    little more time together before we say goodbye. Please join
-                    us at{" "}
-                    <span className="font-semibold">
-                      White Rock Beach Club, Uluwatu
-                    </span>
-                    .
-                  </p>
+                  <div className="border-b border-gray-300 pb-5">
+
+
+                    <p className="text-sm">
+                      Join us for the afterparty to soak up the atmosphere, enjoy great music, and spend a little more time together before we say goodbye.
+                    </p>
+                    <p className="text-sm pt-3">Please join us at White Rock Beach Club Uluwatu.</p>
+                  </div>
 
                   <div className="space-y-5">
                     <p className="italic text-sm">

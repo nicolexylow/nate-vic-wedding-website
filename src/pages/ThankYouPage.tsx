@@ -5,6 +5,7 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
+import DSC01904 from "../assets/DSC01904.jpg";
 
 export default function ThankYouPage() {
   const headingRef = useRef<HTMLDivElement | null>(null);
@@ -72,11 +73,10 @@ export default function ThankYouPage() {
           {/* Heading + text */}
           <div
             ref={headingRef}
-            className={`space-y-6 transition-all duration-1000 ease-out ${
-              headingActive
+            className={`space-y-6 transition-all duration-1000 ease-out ${headingActive
                 ? "-translate-y-4 scale-100 opacity-100"
                 : "scale-90 opacity-50"
-            }`}
+              }`}
           >
             <h2 className="text-3xl font-serif">Thank You</h2>
 
@@ -85,17 +85,25 @@ export default function ThankYouPage() {
               day together
             </p>
           </div>
+          <div
+            ref={headingRef}
+            className={`space-y-6 transition-all duration-1000 ease-out aspect-square ${headingActive
+                ? "-translate-y-4 scale-100 opacity-100"
+                : "scale-90 opacity-50"
+              }`}
+          >
+            <img src={DSC01904} alt="" className="h-full w-full object-cover object-center block rounded-2xl" />
+          </div>
 
-          <div className="border-t pb-8 border-[#535c4b]/20"></div>
+          <div className="pb-8 border-t border-[#535c4b]/20"></div>
 
           {/* Sign-off */}
           <div
             ref={signoffRef}
-            className={`space-y-4 transition-all duration-1200 ease-out ${
-              signoffActive
+            className={`space-y-4 transition-all duration-1200 ease-out ${signoffActive
                 ? "-translate-y-4 scale-100 opacity-100"
                 : "scale-90 opacity-50"
-            }`}
+              }`}
           >
             <p className="text-lg font-serif">With Love,</p>
             <div className="text-xl font-serif font-semibold text-[#535c4b]">

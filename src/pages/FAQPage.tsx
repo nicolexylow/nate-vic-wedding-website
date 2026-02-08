@@ -17,6 +17,10 @@ const FAQS: FAQItem[] = [
     answer: "Please RSVP by April 30th 2026, so we can have an accurate headcount.",
   },
   {
+    question: "Where can I find live updates about the events?",
+    answer: "You can find the link to our Partiful page via the “Live Updates” hover button at the bottom right of the screen.\n\nWe will be using this platform to keep everyone informed should any updates or changes to the events arise.\n\nPlease be sure to RSVP in order to receive updates.\n\nFriends joining us from overseas, please sign up using a phone number linked to your WhatsApp account."
+  },
+  {
     question: "Can I bring a date?",
     answer:
       "We love that you want to share our day with someone special!\n\nTo help us plan, +1s are only invited if specifically mentioned on your invitation.\n\nIf you’re unsure, please reach out to us; we’re happy to clarify.",
@@ -34,7 +38,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Where should I park?",
     answer:
-      "For now, we recommend taking an Uber, Lyft, or Grab to the ceremony, as Nathanael and I are still finalising shuttle bus arrangements.\n\nWe’ll share updates here if any transport options become available. Thank you for your flexibility!",
+      "We recommend taking an Uber, Lyft, or Grab to the ceremony.\n\nWe’ll share updates on Partiful if any transport options become available.\n\nThank you for your flexibility!",
   },
   {
     question: "Is the wedding indoors or outdoors?",

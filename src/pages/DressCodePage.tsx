@@ -5,16 +5,16 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
+import womens from "../assets/dress-code/womens.jpg"
+import mens from "../assets/dress-code/mens.jpg"
 
 export default function DressCodePage() {
   const headingRef = useRef<HTMLDivElement | null>(null);
-  const paletteRef = useRef<HTMLDivElement | null>(null);
   const ladiesRef = useRef<HTMLDivElement | null>(null);
   const ladiesTextRef = useRef<HTMLDivElement | null>(null);
   const gentsRef = useRef<HTMLDivElement | null>(null);
   const gentsTextRef = useRef<HTMLDivElement | null>(null);
   const [headingActive, setHeadingActive] = useState(false);
-  const [paletteActive, setPaletteActive] = useState(false);
   const [ladiesActive, setLadiesActive] = useState(false);
   const [ladiesTextActive, setLadiesTextActive] = useState(false);
   const [gentsActive, setGentsActive] = useState(false);
@@ -22,19 +22,8 @@ export default function DressCodePage() {
   const scrollContainer = useScrollContainer();
   const isMobile = useIsMobile();
 
-  // Color palette swatches based on the image
-  const colorPalette = [
-    "#8B6F5E", // muted reddish-brown/taupe
-    "#D4C4A8", // light beige/tan
-    "#F5F1E8", // cream/off-white
-    "#A8B5A0", // light olive green/sage
-    "#C97D5C", // terracotta/burnt orange
-    "#F9F7F2", // very light cream/almost white
-  ];
-
   useEffect(() => {
     const headingEl = headingRef.current;
-    const paletteEl = paletteRef.current;
     const ladiesEl = ladiesRef.current;
     const ladiesTextEl = ladiesTextRef.current;
     const gentsEl = gentsRef.current;
@@ -49,12 +38,6 @@ export default function DressCodePage() {
         const headingRect = headingEl.getBoundingClientRect();
         const headingTrigger = headingRect.top <= viewportHeight * 0.9;
         setHeadingActive(headingTrigger);
-      }
-
-      if (paletteEl) {
-        const paletteRect = paletteEl.getBoundingClientRect();
-        const paletteTrigger = paletteRect.top <= viewportHeight * 0.9;
-        setPaletteActive(paletteTrigger);
       }
 
       if (ladiesEl) {
@@ -95,110 +78,91 @@ export default function DressCodePage() {
       >
         {/* Title */}
         <div
-          className={`text-center transition-all duration-1000 ease-out pt-10 space-y-10 ${
-            headingActive
+          className={`text-center transition-all duration-1000 ease-out pt-10 space-y-10 ${headingActive
               ? "-translate-y-4 scale-100 opacity-100"
               : "scale-90 opacity-50"
-          }`}
+            }`}
           ref={headingRef}
         >
           <h2 className="text-3xl font-serif ">Dress Code</h2>
 
           <div className="space-y-3">
-          <p>Step into our enchanted forest in style. We invite you to embrace formal attire with a touch of whimsy. Think flowing fabrics, soft florals, earthy tones, and a hint of sparkle. </p>
-          <p>Please note that parts of the celebration will be outdoors, so choose comfortable footwear.
+            <p>Step into our enchanted forest in style.
+            </p>
+            <p>We invite you to embrace formal attire with a touch of whimsy. Think flowing fabrics, soft florals, and a hint of sparkle.
+            </p>
+            <p className="border-t border-gray-300 pt-5 italic"><span className="font-semibold">Please note:</span> Parts of the celebration will be outdoors, so choose comfortable footwear.
 
-          </p>
-        </div>
-        </div>
-
-        
-
-        {/* Color Palette */}
-        <div
-          className={`text-center transition-all duration-1500 ease-out ${
-            paletteActive
-              ? "-translate-y-6 scale-100 opacity-100"
-              : "scale-90 opacity-50"
-          }`}
-          ref={paletteRef}
-        >
-          <div className="flex flex-wrap justify-center gap-4 max-w-2xl">
-            {colorPalette.map((color, index) => (
-              <div
-                key={index}
-                className="w-16 h-16 rounded-full border-2 border-white shadow-md"
-                style={{ backgroundColor: color }}
-              />
-            ))}
+            </p>
           </div>
         </div>
 
         {/* Ladies Section */}
         <div className="space-y-10">
           <div
-            className={`text-center space-y-3 transition-all duration-1500 ease-out mt-10 ${
-              ladiesActive
+            className={`text-center space-y-3 transition-all duration-1500 ease-out mt-10 ${ladiesActive
                 ? "-translate-y-4 scale-100 opacity-100"
                 : "scale-90 opacity-50"
-            }`}
+              }`}
             ref={ladiesRef}
           >
             <h3 className="text-xl font-serif font-semibold text-center">Ladies</h3>
 
-            <p>
-            We adore dreamy gowns and evening gowns in pastel hues.
+<div>
+<p>
+              Think Fairytale princess!
 
             </p>
+            <p>We adore dreamy gowns in pastel hues.
+            </p>
+</div>
+          
 
             <img
-              src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
-              className=" aspect-square h-full w-full object-cover object-center rounded-2xl"
+              src={womens}
+              className="object-cover object-center rounded-2xl"
             />
           </div>
 
           <div
-            className={`text-center space-y-3 transition-all duration-1500 ease-out ${
-              ladiesTextActive
+            className={`text-center space-y-3 transition-all duration-1500 ease-out ${ladiesTextActive
                 ? "-translate-y-8 scale-100 opacity-100"
                 : "opacity-50"
-            }`}
+              }`}
             ref={ladiesTextRef}
           >
-            
+
           </div>
         </div>
 
         {/* Gents Section */}
         <div className="space-y-10">
           <div
-            className={`text-center space-y-3 transition-all duration-1500 ease-out mt-10 ${
-              gentsActive
+            className={`text-center space-y-3 transition-all duration-1500 ease-out mt-10 ${gentsActive
                 ? "-translate-y-4 scale-100 opacity-100"
                 : "scale-90 opacity-50"
-            }`}
+              }`}
             ref={gentsRef}
           >
             <h3 className="text-xl font-serif font-semibold text-center">Gentlemen</h3>
             <p>
-            Lightweight suits or dress shirts with tailored trousers are perfect for Bali’s tropical warmth. 
+            Lightweight suits or dress shirts with tailored trousers are perfect for Bali’s tropical climate. 
             </p>
 
             <img
-              src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/hero.jpg"
-              className=" aspect-square h-full w-full object-cover object-center rounded-2xl"
+              src={mens}
+              className="object-cover object-center rounded-2xl"
             />
           </div>
 
           <div
-            className={`text-center space-y-3 transition-all duration-1500 ease-out ${
-              gentsTextActive
+            className={`text-center space-y-3 transition-all duration-1500 ease-out ${gentsTextActive
                 ? "-translate-y-8 scale-100 opacity-100"
                 : "opacity-50"
-            }`}
+              }`}
             ref={gentsTextRef}
           >
-            
+
           </div>
         </div>
       </div>

@@ -13,17 +13,16 @@ import ThankYouPage from "./pages/ThankYouPage";
 import FAQPage from "./pages/FAQPage";
 import { Pause, Play } from "lucide-react";
 import { MusicToggle } from "./components/MusicToggle";
+import slide1 from "./assets/slideshow/DSC01859.jpg";
+import slide2 from "./assets/slideshow/DSC09158.jpg";
+import slide3 from "./assets/slideshow/DSC09188.jpg";
+import slide4 from "./assets/slideshow/DSC09441.jpg";
 
 function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [allowScroll, setAllowScroll] = useState(false);
 
-  const SLIDES = [
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC01859.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09158.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09188.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T064303Z-3-001/DSC09441.jpg",
-  ];
+  const SLIDES = [slide1, slide2, slide3, slide4];
 
   const [slideIndex, setSlideIndex] = useState(0);
   const [galleryModalOpen, setGalleryModalOpen] = useState(false);
@@ -50,7 +49,7 @@ function App() {
 
   useEffect(() => {
     const a = new Audio(
-      "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/wanderlust-justin-lee-main-version-29117-01-40.mp3"
+      "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/Wedding+Website+Track.wav"
     );
     a.loop = true;
     a.volume = 0.35;
@@ -123,9 +122,8 @@ function App() {
               key={src}
               src={src}
               alt="Nathanael and Victoria"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                i === slideIndex ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${i === slideIndex ? "opacity-100" : "opacity-0"
+                }`}
               draggable={false}
             />
           ))}
@@ -199,13 +197,13 @@ function App() {
             <GiftRegistryPage />
             <ThankYouPage />
           </div>
-          <button className="fixed bottom-5 right-20 z-50 rounded-full p-3 text-sm bg-black/30 backdrop-blur-md text-white hover:bg-black/40"
-           onClick={() => {
-            window.open(
-              "https://partiful.com/e/fYbMarqjQpt8xUPg02Jd",
-              "_blank"
-            );
-          }}>
+          <button className="fixed bottom-5 right-20 z-50 rounded-full py-3 px-4 text-sm bg-black/30 backdrop-blur-md text-white hover:bg-black/40"
+            onClick={() => {
+              window.open(
+                "https://partiful.com/e/fYbMarqjQpt8xUPg02Jd",
+                "_blank"
+              );
+            }}>
             Live Updates
           </button>
         </div>

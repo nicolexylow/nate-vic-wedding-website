@@ -5,6 +5,7 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
+import DSC08924 from "../assets/DSC08924.jpg";
 
 export default function IntroPage() {
   const imageRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +53,7 @@ export default function IntroPage() {
       }}
     >
       <div className="mt-14 -mb-5 font-serif">
-      <div className="mt-5"
+        <div className="mt-5"
         >
           <h2 className="text-2xl">We Are Getting Married!</h2>
           <p className="text-base text-[#696969] max-w-2xl mx-auto italic">
@@ -61,14 +62,13 @@ export default function IntroPage() {
         </div>
         <div
           ref={imageRef}
-          className={`w-full aspect-square overflow-hidden mt-12 rounded-2xl relative z-20 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.2)] ${
-            imageActive
-              ? "-translate-y-4 scale-100 opacity-100"
-              : "scale-90 opacity-80"
-          }`}
+          className={`w-full aspect-square overflow-hidden mt-12 rounded-2xl relative z-20 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.2)] ${imageActive
+            ? "-translate-y-4 scale-100 opacity-100"
+            : "scale-90 opacity-80"
+            }`}
         >
           <img
-            src="https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/couple-intro.jpg"
+            src={DSC08924}
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-center block"
           />
@@ -76,22 +76,15 @@ export default function IntroPage() {
         <div
           ref={cardRef}
           style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
-          className={`bg-white/90 p-5 rounded-2xl pt-18 border-6 border-white space-y-5 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.1)] relative ${
-            cardActive
-              ? "-translate-y-15 opacity-100"
-              : "-translate-y-5 opacity-50"
-          }`}
+          className={`bg-white/90 p-5 rounded-2xl pt-18 border-6 border-white space-y-5 transition-all duration-1500 ease-out shadow-[0_0_20px_rgba(0,0,0,0.1)] relative ${cardActive
+            ? "-translate-y-15 opacity-100"
+            : "-translate-y-5 opacity-50"
+            }`}
         >
           <p className="text-sm">
-            We can’t wait to celebrate our wedding with you in beautiful Bali.
-            Having our closest friends and family travel from near and far to
-            share this special moment means more to us than words can say. As
-            many of you know, travel has always been close to our hearts, so it
-            only feels fitting that we come together in one unforgettable place
-            to celebrate our love. This weekend is all about love, laughter, and
-            creating memories together and we’re so grateful you’ll be part of
-            it.
+          We can’t wait to celebrate our wedding. Having our closest friends and family travel from near and far to share this special moment means more to us than words can say. 
           </p>
+          <p className="text-sm">This weekend is all about love, laughter, and creating memories together and we’re so grateful you’ll be part of it.</p>
           <div className="space-y-1 text-md font-semibold">
             <h1>Love,</h1>
             <h2 className="italic">Nathanael & Victoria</h2>

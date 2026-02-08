@@ -5,6 +5,18 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
+import DSC01516 from "../assets/gallery/DSC01516.jpg";
+import DSC01533 from "../assets/gallery/DSC01533.jpg";
+import DSC01702 from "../assets/gallery/DSC01702.jpg";
+import DSC01716 from "../assets/gallery/DSC01716.jpg";
+import DSC01726 from "../assets/gallery/DSC01726.jpg";
+import DSC01746 from "../assets/gallery/DSC01746.jpg";
+import DSC01781 from "../assets/gallery/DSC01781.jpg";
+import DSC01808 from "../assets/gallery/DSC01808.jpg";
+import DSC09015 from "../assets/gallery/DSC09015.jpg";
+import DSC09269 from "../assets/gallery/DSC09269.jpg";
+import IMG_7436 from "../assets/gallery/IMG_7436.jpg";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type GalleryPageProps = {
   setGalleryModalOpen?: (open: boolean) => void;
@@ -13,21 +25,17 @@ type GalleryPageProps = {
 export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
 
   const SOURCE = [
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/DJI_0302.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/DSC01516.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/DSC01533.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_0315.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_1831.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_2834.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_3715.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_4634.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_6824.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7024.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7025+1.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7151.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_7436.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_8485.jpg",
-    "https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/drive-download-20260125T060817Z-3-001/IMG_9497.jpg"
+    DSC01516,
+    DSC01533,
+    DSC01702,
+    DSC01716,
+    DSC01726,
+    DSC01746,
+    DSC01781,
+    DSC01808,
+    DSC09015,
+    DSC09269,
+    IMG_7436,
   ]
   const images = SOURCE.map((source, i) => ({
     id: i + 1,
@@ -42,6 +50,37 @@ export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
     setGalleryModalOpen?.(selectedImage !== null);
     return () => setGalleryModalOpen?.(false); // cleanup if unmount
   }, [selectedImage, setGalleryModalOpen]);
+
+  // Navigation functions for modal
+  const goToPrevious = () => {
+    if (selectedImage && selectedImage > 1) {
+      setSelectedImage(selectedImage - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (selectedImage && selectedImage < images.length) {
+      setSelectedImage(selectedImage + 1);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (selectedImage === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        goToPrevious();
+      } else if (e.key === "ArrowRight") {
+        goToNext();
+      } else if (e.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage, images.length]);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [sectionActive, setSectionActive] = useState(false);
@@ -101,11 +140,10 @@ export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
       >
         <div
           ref={sectionRef}
-          className={`text-center space-y-4 pb-10 transition-all duration-1500 ease-out ${
-            sectionActive
-              ? "-translate-y-2 scale-100 opacity-100"
-              : "scale-95 opacity-60"
-          }`}
+          className={`text-center space-y-4 pb-10 transition-all duration-1500 ease-out ${sectionActive
+            ? "-translate-y-2 scale-100 opacity-100"
+            : "scale-95 opacity-60"
+            }`}
         >
           <h2 className="text-3xl font-serif">Our Gallery</h2>
           <p className="text-md text-[#535c4b]">
@@ -121,11 +159,10 @@ export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
               <div
                 key={image.id}
                 ref={cardRefs[idx]}
-                className={`aspect-square overflow-hidden rounded-lg shadow-lg cursor-pointer transition-all duration-1000 ease-out ${
-                  cardActive
-                    ? "-translate-y-15 scale-100 opacity-100"
-                    : "-translate-y-12 scale-90 opacity-50"
-                } hover:scale-105`}
+                className={`aspect-square overflow-hidden rounded-lg shadow-lg cursor-pointer transition-all duration-1000 ease-out ${cardActive
+                  ? "-translate-y-15 scale-100 opacity-100"
+                  : "-translate-y-12 scale-90 opacity-50"
+                  } hover:scale-105`}
                 onClick={() => setSelectedImage(image.id)}
               >
                 <img
@@ -152,12 +189,42 @@ export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
                 alt={images[selectedImage - 1].alt}
                 className="max-w-full rounded-2xl max-h-[90vh] object-contain"
               />
+
+              {/* Close button */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 text-white text-2xl w-10 h-10 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70"
+                className="absolute top-4 right-4 text-white text-2xl w-10 h-10 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+                aria-label="Close"
               >
                 ×
               </button>
+
+              {/* Previous button */}
+              {selectedImage > 1 && (
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft />
+                </button>
+              )}
+
+              {/* Next button */}
+              {selectedImage < images.length && (
+                <button
+                  onClick={goToNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRight />
+                </button>
+              )}
+
+              {/* Image counter */}
+              <div className="absolute bottom-4 font-sans left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
+                {selectedImage} / {images.length}
+              </div>
             </div>
           </div>
         )}
