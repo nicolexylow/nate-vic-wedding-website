@@ -167,7 +167,6 @@ export default function LandingPage({ startMusic }: LandingPageProps) {
 
         <div className="relative z-10 flex min-h-svh flex-col items-center justify-between px-6 py-20 text-white">
           <div className="w-full text-center space-y-3">
-            <h2 className="text-lg text-shadow-lg italic">The Wedding of</h2>
             <h1 className="text-5xl italic text-shadow-lg font-['Kapakana']">
               Nathanael & Victoria
             </h1>
