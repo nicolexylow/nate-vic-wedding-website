@@ -5,16 +5,16 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
-import DSC01516 from "../assets/gallery/DSC01516.jpg";
-import DSC01533 from "../assets/gallery/DSC01533.jpg";
-import DSC01702 from "../assets/gallery/DSC01702.jpg";
-import DSC01716 from "../assets/gallery/DSC01716.jpg";
-import DSC01726 from "../assets/gallery/DSC01726.jpg";
-import DSC01746 from "../assets/gallery/DSC01746.jpg";
-import DSC01781 from "../assets/gallery/DSC01781.jpg";
-import DSC01808 from "../assets/gallery/DSC01808.jpg";
-import DSC09015 from "../assets/gallery/DSC09015.jpg";
-import DSC09269 from "../assets/gallery/DSC09269.jpg";
+import one from "../assets/gallery/1.jpg";
+import two from "../assets/gallery/2.jpg";
+import three from "../assets/gallery/3.jpg";
+import four from "../assets/gallery/4.jpg";
+import five from "../assets/gallery/5.jpg";
+import six from "../assets/gallery/6.jpg";
+import seven from "../assets/gallery/7.jpg";
+import eight from "../assets/gallery/8.jpg";
+import nine from "../assets/gallery/9.jpg";
+import ten from "../assets/gallery/10.jpg";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type GalleryPageProps = {
@@ -24,16 +24,7 @@ type GalleryPageProps = {
 export default function GalleryPage({ setGalleryModalOpen }: GalleryPageProps) {
 
   const SOURCE = [
-    DSC01702,
-    DSC01716,
-    DSC01726,
-    DSC01746,
-    DSC01781,
-    DSC01808,
-    DSC09015,
-    DSC09269,
-    DSC01516,
-    DSC01533,
+    one, two, three, four, five, six, seven, eight, nine, ten
   ]
   const images = SOURCE.map((source, i) => ({
     id: i + 1,

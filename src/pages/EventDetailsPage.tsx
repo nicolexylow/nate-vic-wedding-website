@@ -236,7 +236,7 @@ export default function EventDetailsPage() {
                 <div className="space-y-1">
                   <p className="text-xl">Saturday</p>
                   <p className="text-xl font-bold text-[#535c4b]">
-                    23 August 2026
+                    22 August 2026
                   </p>
                 </div>
 
