@@ -6,6 +6,7 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
+import background from "../assets/website-background.png"
 
 type EventButton = {
   title?: string;
@@ -102,10 +103,9 @@ export default function EventDetailsPage() {
               : "-translate-y-12 scale-90 opacity-50"
               }`}
             style={{
-              backgroundImage:
-                "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
+              backgroundImage: `url(${background})`,
               backgroundSize: "cover",
-              backgroundPosition: "top",
+              backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
           >
@@ -154,10 +154,9 @@ export default function EventDetailsPage() {
               : "-translate-y-12 scale-90 opacity-50"
               }`}
             style={{
-              backgroundImage:
-                "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
+              backgroundImage: `url(${background})`,
               backgroundSize: "cover",
-              backgroundPosition: "top",
+              backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
           >
@@ -216,10 +215,9 @@ export default function EventDetailsPage() {
               : "-translate-y-12 scale-90 opacity-50"
               }`}
             style={{
-              backgroundImage:
-                "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
+              backgroundImage: `url(${background})`,
               backgroundSize: "cover",
-              backgroundPosition: "top",
+              backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
           >
@@ -273,10 +271,9 @@ export default function EventDetailsPage() {
               : "-translate-y-12 scale-90 opacity-50"
               }`}
             style={{
-              backgroundImage:
-                "url('https://nathanael-victoria-2026-wedding-website.s3.ap-southeast-2.amazonaws.com/background+(4).png')",
+              backgroundImage: `url(${background})`,
               backgroundSize: "cover",
-              backgroundPosition: "top",
+              backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
           >

@@ -21,6 +21,16 @@ const FAQS: FAQItem[] = [
     answer: "You can find the link to our Partiful page via the “Live Updates” hover button at the bottom right of the screen.\n\nWe will be using this platform to keep everyone informed should any updates or changes to the events arise.\n\nPlease be sure to RSVP in order to receive updates.\n\nFriends joining us from overseas, please sign up using a phone number linked to your WhatsApp account."
   },
   {
+    question: "Which airport should we fly into?",
+    answer:
+      "Please book your flights to Ngurah Rai International Airport (DPS) in Denpasar, Bali. This is Bali’s main international airport and the closest airport to the wedding events.",
+  },
+  {
+    question: "Is there a recommended area to stay in Bali?",
+    answer:
+      "Yes! Bali offers a wide range of accommodation options, from luxury resorts to private villas and boutique hotels. Most common areas to stay at are Changu, Seminyak, Nusa Dua and Uluwatu.\n\nOur venue offers partner discounts for some resorts around Uluwatu/Nusa Dua. Feel free to reach out to Nathanael or Victoria to organise your accommodation if you’re interested.\n\nNote: Travel time will differ drastically based on location. Please take this into consideration whilst booking your stay.",
+  },
+  {
     question: "Can I bring a date?",
     answer:
       "We love that you want to share our day with someone special!\n\nTo help us plan, +1s are only invited if specifically mentioned on your invitation.\n\nIf you’re unsure, please reach out to us; we’re happy to clarify.",

@@ -65,11 +65,10 @@ export default function GiftRegistryPage() {
       >
         <div
           ref={headingRef}
-          className={`text-center transition-all duration-1000 ease-out space-y-4 pt-10 ${
-            headingActive
+          className={`text-center transition-all duration-1000 ease-out space-y-4 pt-10 ${headingActive
               ? "-translate-y-4 scale-100 opacity-100"
               : "scale-90 opacity-50"
-          }`}
+            }`}
         >
           <h2 className="text-3xl font-serif">Gift Registry</h2>
 
@@ -79,19 +78,17 @@ export default function GiftRegistryPage() {
           </p>
 
           <p className="text-md max-w-2xl mx-auto italic text-[#696969]">
-            For those who wish to honour us with a gift, we would greatly appreciate
-            a contribution to our future home fund.
+            For those who wish to honour us with a gift, we would greatly appreciate a contribution to Victoria’s future puppy fund💕🐶🐾
           </p>
         </div>
 
         <div className="grid gap-8">
           <div
             ref={cardRef}
-            className={`bg-white border-4 border-red-50 rounded-2xl p-8 shadow-lg space-y-6 text-center transition-all duration-1500 ease-out ${
-              cardActive
+            className={`bg-white border-4 border-red-50 rounded-2xl p-8 shadow-lg space-y-6 text-center transition-all duration-1500 ease-out ${cardActive
                 ? "-translate-y-4 scale-100 opacity-100"
                 : "scale-90 opacity-50"
-            }`}
+              }`}
           >
             <h3 className="text-xl font-serif font-bold">Bank Transfer</h3>
 
@@ -104,7 +101,7 @@ export default function GiftRegistryPage() {
                 <p className="text-md font-bold text-[#535c4b]"><span className="font-medium">Account No:</span> 14379255</p>
 
                 <p className="text-md font-bold text-[#535c4b] mt-1">
-                <span className="font-medium">Account Name:</span> Laurentius Mualim
+                  <span className="font-medium">Account Name:</span> Laurentius Mualim
                 </p>
               </div>
             </div>
