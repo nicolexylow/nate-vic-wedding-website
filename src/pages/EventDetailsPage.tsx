@@ -6,7 +6,7 @@ import {
   getScrollElement,
   getViewportHeight,
 } from "../contexts/ScrollContext";
-import background from "../assets/website-background.png"
+import background from "../assets/website-background.png";
 
 type EventButton = {
   title?: string;
@@ -32,9 +32,9 @@ const query = `*[_type == "event" && eventKey in ["welcome-dinner","wedding-day"
 }`;
 
 export default function EventDetailsPage() {
-  const [event, setEvent] = useState<
-    Partial<Record<Event["eventKey"], Event>>
-  >({});
+  const [event, setEvent] = useState<Partial<Record<Event["eventKey"], Event>>>(
+    {},
+  );
   const bachelorRef = useRef<HTMLDivElement | null>(null);
   const ceremonyRef = useRef<HTMLDivElement | null>(null);
   const receptionRef = useRef<HTMLDivElement | null>(null);
@@ -98,10 +98,11 @@ export default function EventDetailsPage() {
           {/* Ceremony */}
           <div
             ref={bachelorRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${bachelorActive
-              ? "-translate-y-15 scale-100 opacity-100"
-              : "-translate-y-12 scale-90 opacity-50"
-              }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
+              bachelorActive
+                ? "-translate-y-15 scale-100 opacity-100"
+                : "-translate-y-12 scale-90 opacity-50"
+            }`}
             style={{
               backgroundImage: `url(${background})`,
               backgroundSize: "cover",
@@ -130,18 +131,19 @@ export default function EventDetailsPage() {
 
                 <div className="space-y-3 text-sm py-2">
                   <p>
-                    Nathanael and Victoria will be holding their respective Bachelor and Bachelorette celebrations.
-
+                    Nathanael and Victoria will be holding their respective
+                    Bachelor and Bachelorette celebrations.
                   </p>
                   <p>
-                    All are welcome to join in the celebrations! More details will be shared at a later date by the Best Man and Maid of Honour.
+                    All are welcome to join in the celebrations! More details
+                    will be shared at a later date by the Best Man and Maid of
+                    Honour.
                   </p>
                   <p>
-                    If you would like to attend, please be sure to RSVP, so we can send out invitations and plan the events accordingly.
+                    If you would like to attend, please be sure to RSVP, so we
+                    can send out invitations and plan the events accordingly.
                   </p>
-                  <p>
-                    We hope you can celebrate with us!
-                  </p>
+                  <p>We hope you can celebrate with us!</p>
                 </div>
               </div>
             </div>
@@ -149,10 +151,11 @@ export default function EventDetailsPage() {
           {/* Ceremony */}
           <div
             ref={ceremonyRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${ceremonyActive
-              ? "-translate-y-15 scale-100 opacity-100"
-              : "-translate-y-12 scale-90 opacity-50"
-              }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
+              ceremonyActive
+                ? "-translate-y-15 scale-100 opacity-100"
+                : "-translate-y-12 scale-90 opacity-50"
+            }`}
             style={{
               backgroundImage: `url(${background})`,
               backgroundSize: "cover",
@@ -177,6 +180,7 @@ export default function EventDetailsPage() {
                   <p className="text-xl font-bold text-[#535c4b]">
                     21 August 2026
                   </p>
+                  <p className="text-l text-[#535c4b] font-bold">6:00 PM</p>
                 </div>
 
                 <div className="space-y-3 text-sm py-2">
@@ -196,7 +200,7 @@ export default function EventDetailsPage() {
                     onClick={() => {
                       window.open(
                         "https://maps.app.goo.gl/fRCy8UgW6tQ79yiT7",
-                        "_blank"
+                        "_blank",
                       );
                     }}
                   >
@@ -210,10 +214,11 @@ export default function EventDetailsPage() {
           {/* Reception */}
           <div
             ref={receptionRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1000 ease-out ${receptionActive
-              ? "-translate-y-15 scale-100 opacity-100"
-              : "-translate-y-12 scale-90 opacity-50"
-              }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1000 ease-out ${
+              receptionActive
+                ? "-translate-y-15 scale-100 opacity-100"
+                : "-translate-y-12 scale-90 opacity-50"
+            }`}
             style={{
               backgroundImage: `url(${background})`,
               backgroundSize: "cover",
@@ -227,7 +232,9 @@ export default function EventDetailsPage() {
             >
               {" "}
               <div className="space-y-2">
-                <h3 className="text-2xl font-serif font-bold">{wedding?.title ?? "Wedding Day"}</h3>
+                <h3 className="text-2xl font-serif font-bold">
+                  {wedding?.title ?? "Wedding Day"}
+                </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
               <div className="space-y-3">
@@ -240,7 +247,8 @@ export default function EventDetailsPage() {
 
                 <div className="space-y-5 py-2 pt-4">
                   <div className=" border-b border-gray-300 pb-5">
-                    <p className="font-semibold">Ceremony</p>
+                    <p className="font-semibold text-lg">Ceremony</p>
+                    <p className="text-md text-[#535c4b] font-bold">12:30 PM</p>
                     <p className="pt-2 text-sm">
                       Our wedding ceremony will take place at Tirtha Uluwatu.
                       The ceremony will be held indoors.
@@ -248,15 +256,17 @@ export default function EventDetailsPage() {
                   </div>
 
                   <div>
-                    <p className="font-semibold">Reception</p>
+                    <p className="font-semibold text-lg">Reception</p>
+                    <p className="text-md text-[#535c4b] font-bold">3:30 PM</p>
                     <p className="text-sm pt-2">
                       Following the ceremony, guests are invited to continue the
-                      celebration at Glasshouse by Tirtha
-                      for cocktails, dinner, and dancing.
+                      celebration at Glasshouse by Tirtha for cocktails, dinner,
+                      and dancing.
                     </p>
-                    <p className="text-sm pt-3">There will be a
-                      shuttle service provided on the day to transport guests
-                      between locations.</p>
+                    <p className="text-sm pt-3">
+                      There will be a shuttle service provided on the day to
+                      transport guests between locations.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -266,10 +276,11 @@ export default function EventDetailsPage() {
           {/* Last */}
           <div
             ref={thirdRef}
-            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${thirdActive
-              ? "-translate-y-15 scale-100 opacity-100"
-              : "-translate-y-12 scale-90 opacity-50"
-              }`}
+            className={`rounded-2xl p-4 relative overflow-hidden transition-all duration-1500 ease-out ${
+              thirdActive
+                ? "-translate-y-15 scale-100 opacity-100"
+                : "-translate-y-12 scale-90 opacity-50"
+            }`}
             style={{
               backgroundImage: `url(${background})`,
               backgroundSize: "cover",
@@ -282,7 +293,9 @@ export default function EventDetailsPage() {
               style={{ boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.15)" }}
             >
               <div className="space-y-2">
-                <h3 className="text-2xl font-serif font-bold">{after?.title ?? "After Party"}</h3>
+                <h3 className="text-2xl font-serif font-bold">
+                  {after?.title ?? "After Party"}
+                </h3>
                 <div className="w-20 h-0.5 mx-auto"></div>
               </div>
 
@@ -292,16 +305,19 @@ export default function EventDetailsPage() {
                   <p className="text-xl font-bold text-[#535c4b]">
                     23 August 2026
                   </p>
+                  <p className="text-l text-[#535c4b] font-bold">12:00 PM</p>
                 </div>
 
                 <div className="space-y-4 py-2">
                   <div className="border-b border-gray-300 pb-5">
-
-
                     <p className="text-sm">
-                      Join us for the afterparty to soak up the atmosphere, enjoy great music, and spend a little more time together before we say goodbye.
+                      Join us for the afterparty to soak up the atmosphere,
+                      enjoy great music, and spend a little more time together
+                      before we say goodbye.
                     </p>
-                    <p className="text-sm pt-3">Please join us at White Rock Beach Club Uluwatu.</p>
+                    <p className="text-sm pt-3">
+                      Please join us at White Rock Beach Club Uluwatu.
+                    </p>
                   </div>
 
                   <div className="space-y-5">
