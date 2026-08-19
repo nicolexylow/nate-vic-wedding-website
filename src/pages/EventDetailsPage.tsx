@@ -199,7 +199,7 @@ export default function EventDetailsPage() {
                     className="rounded-full py-2 px-10 bg-[#ffe4e6]"
                     onClick={() => {
                       window.open(
-                        "https://maps.app.goo.gl/fRCy8UgW6tQ79yiT7",
+                        "https://maps.app.goo.gl/hp3FoQrPstv4X5SWA",
                         "_blank",
                       );
                     }}
